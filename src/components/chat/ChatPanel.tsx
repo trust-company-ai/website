@@ -178,16 +178,6 @@ export function ChatPanel({
       document.body.style.overflow = prev;
     };
   }, [expanded]);
-  const [narrow, setNarrow] = useState(
-    () => typeof window !== "undefined" && window.innerWidth < 640,
-  );
-  useEffect(() => {
-    const mq = window.matchMedia("(max-width: 639px)");
-    const onChange = () => setNarrow(mq.matches);
-    onChange();
-    mq.addEventListener("change", onChange);
-    return () => mq.removeEventListener("change", onChange);
-  }, []);
   const endRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
@@ -242,7 +232,7 @@ export function ChatPanel({
   const form = (
     <form
       className={cn(
-        heroEmpty ? "" : "p-3 sm:p-4",
+        heroEmpty ? "contents" : "p-3 sm:p-4",
         expanded && "mx-auto w-full max-w-3xl",
       )}
       onSubmit={e => {
@@ -253,7 +243,7 @@ export function ChatPanel({
       <div
         className={cn(
           heroEmpty
-            ? "flex flex-col rounded-2xl border border-black/[.08] bg-white px-5 pt-4 pb-3 shadow-[0_1px_2px_rgba(0,0,0,.04),0_12px_32px_-16px_rgba(29,63,138,.25)] transition-shadow focus-within:border-navy focus-within:ring-2 focus-within:ring-primary/30"
+            ? "mt-6 flex min-h-[13rem] flex-col rounded-2xl border-2 border-navy/25 bg-white px-6 pt-5 pb-5 transition-colors hover:border-navy/60 focus-within:border-navy focus-within:ring-2 focus-within:ring-primary/30"
             : "flex items-end gap-2 rounded-full bg-background px-4 py-2 focus-within:ring-2 focus-within:ring-ring/40",
         )}
       >
@@ -271,17 +261,13 @@ export function ChatPanel({
           }}
           rows={heroEmpty ? 3 : 1}
           maxLength={600}
-          placeholder={
-            narrow || hero
-              ? "Ask the knowledge base"
-              : "Ask a question of the open source knowledge base"
-          }
+          placeholder="Ask the knowledge base"
           className={cn(
             "flex-1 resize-none bg-transparent outline-none leading-6 max-h-32 placeholder:text-muted-foreground",
-            heroEmpty ? "text-[17px] leading-7 min-h-[4.5rem]" : "text-[15px]",
+            heroEmpty ? "text-[17px] leading-7 min-h-[4.5rem] text-ink" : "text-[15px]",
           )}
         />
-        <div className={heroEmpty ? "flex justify-end" : "contents"}>
+        <div className={heroEmpty ? "mt-auto flex justify-end" : "contents"}>
           <button
             type="submit"
             data-testid="chat-send"
@@ -290,11 +276,11 @@ export function ChatPanel({
             className={cn(
               "rounded-full bg-primary text-primary-foreground flex items-center justify-center transition-opacity",
               heroEmpty
-                ? "size-10 disabled:opacity-40"
+                ? "size-14 shadow-[0_8px_20px_-8px_rgba(29,63,138,.6)] disabled:opacity-100 disabled:shadow-none"
                 : "size-8 disabled:opacity-40",
             )}
           >
-            <ArrowUp className={heroEmpty ? "size-[18px]" : "size-4"} />
+            <ArrowUp className={heroEmpty ? "size-6" : "size-4"} />
           </button>
         </div>
       </div>
@@ -328,17 +314,17 @@ export function ChatPanel({
 
   if (hero && msgs.length === 0) {
     return (
-      <div data-testid="chat-panel" className="flex w-full flex-col">
+      <div data-testid="chat-panel" className="contents">
         <p className="font-mono text-[12.5px] tracking-[0.2em] text-navy tabular-nums">
           02
         </p>
         <label
           htmlFor="hero-chat-input"
-          className="mt-4 block text-[1.6rem] sm:text-[1.9rem] font-semibold leading-[1.15] tracking-[-0.02em]"
+          className="mt-4 block text-[1.5rem] sm:text-[1.7rem] font-semibold leading-[1.15] tracking-[-0.02em]"
         >
-          Ask the chatbot here
+          Ask the knowledge base
         </label>
-        <div className="mt-6">{form}</div>
+        {form}
       </div>
     );
   }

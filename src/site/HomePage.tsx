@@ -226,17 +226,17 @@ function HeroDropZone() {
   }
 
   return (
-    <div data-testid="upload-panel" className="flex w-full flex-col">
+    <div data-testid="upload-panel" className="contents">
       <p className="font-mono text-[12.5px] tracking-[0.2em] text-navy tabular-nums">
         01
       </p>
       <label
         htmlFor="hero-file-input"
-        className="mt-4 block cursor-pointer text-[1.6rem] sm:text-[1.9rem] font-semibold leading-[1.15] tracking-[-0.02em]"
+        className="mt-4 block cursor-pointer text-[1.5rem] sm:text-[1.7rem] font-semibold leading-[1.15] tracking-[-0.02em]"
       >
         Upload non-confidential documents here
       </label>
-      <div className="mt-6">
+      <div className="mt-6 flex">
         <div
           data-testid="drop-zone"
           role="button"
@@ -260,10 +260,11 @@ function HeroDropZone() {
             void take(e.dataTransfer.files?.[0]);
           }}
           className={cn(
-            "flex cursor-pointer flex-col rounded-2xl border border-black/[.08] bg-white px-5 pt-4 pb-3 outline-none transition-shadow",
-            "shadow-[0_1px_2px_rgba(0,0,0,.04),0_12px_32px_-16px_rgba(29,63,138,.25)]",
-            "hover:border-navy/40 focus-visible:ring-2 focus-visible:ring-primary/30",
-            over && "border-navy ring-2 ring-primary/30",
+            "flex w-full min-h-[13rem] cursor-pointer flex-col items-center justify-center gap-4 rounded-2xl border-2 border-dashed px-6 py-8 text-center outline-none transition-colors",
+            over
+              ? "border-navy bg-navy/[.06]"
+              : "border-navy/25 bg-navy/[.03] hover:border-navy/60 hover:bg-navy/[.05]",
+            "focus-visible:border-navy focus-visible:ring-2 focus-visible:ring-primary/30",
           )}
         >
           <input
@@ -278,26 +279,26 @@ function HeroDropZone() {
               e.target.value = "";
             }}
           />
-          <p className="min-h-[5.25rem] text-[17px] leading-7 text-muted-foreground">
+          <span
+            aria-hidden="true"
+            className="flex size-14 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-[0_8px_20px_-8px_rgba(29,63,138,.6)]"
+          >
+            {busy ? (
+              <Loader2 className="size-6 animate-spin" />
+            ) : (
+              <Upload className="size-6" />
+            )}
+          </span>
+          <p className="text-[17px] leading-7 text-ink">
             {busy
               ? "Reading your file…"
               : over
                 ? "Let go to add it"
                 : "Drop a file here, or click to choose one"}
           </p>
-          <div className="flex justify-end">
-            <span
-              aria-hidden="true"
-              className="flex size-10 items-center justify-center rounded-full bg-primary text-primary-foreground"
-            >
-              {busy ? (
-                <Loader2 className="size-[18px] animate-spin" />
-              ) : (
-                <Upload className="size-[18px]" />
-              )}
-            </span>
-          </div>
         </div>
+      </div>
+      <div>
         <p
           className="mt-5 text-[15.5px] leading-[1.6] text-muted-foreground"
           data-testid="sample-docs-line"
@@ -355,15 +356,21 @@ export function HomePage() {
           </motion.div>
 
           {/* Upload left, chat right — equal size */}
-          <div className="mt-14 sm:mt-16 grid gap-12 lg:grid-cols-2 lg:gap-16 items-stretch">
-            <motion.div {...rise(0.2)} className="flex">
-              <div className="flex w-full flex-col" data-testid="upload-card">
+          <div className="mt-14 sm:mt-16 grid gap-12 lg:grid-cols-2 lg:grid-rows-[auto_auto_1fr_auto] lg:gap-x-16 lg:gap-y-0">
+            <motion.div
+              {...rise(0.2)}
+              className="flex flex-col lg:grid lg:row-span-4 lg:grid-rows-subgrid"
+            >
+              <div className="contents" data-testid="upload-card">
                 <HeroDropZone />
               </div>
             </motion.div>
 
-            <motion.div {...rise(0.25)} className="flex">
-              <div className="flex w-full flex-col" data-testid="chat-card">
+            <motion.div
+              {...rise(0.25)}
+              className="flex flex-col lg:grid lg:row-span-4 lg:grid-rows-subgrid"
+            >
+              <div className="contents" data-testid="chat-card">
                 <ChatPanel hero />
               </div>
             </motion.div>
