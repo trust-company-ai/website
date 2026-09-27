@@ -32,9 +32,12 @@ type LlmOut = {
 const PROBE_RE =
   /(system prompt|your (instructions|prompt|rules|configuration)|(ignore|disregard|forget|override)\b.{0,40}\b(instructions|rules|prompt)|jailbreak|(what|which) (model|llm|ai) (is|are|powers|runs)|who (runs|owns|funds|funded|made|built|is behind|pays for)|how is (this|it) funded|^\/\w+$)/i;
 
+const NO_SOURCE_ANSWER =
+  "The shared material has no passage that answers this, so no answer is given. Try other words, or read the Library directly.";
+
 const SYSTEM = `You are the assistant for Trust Company AI, a community where trust companies share best practices for building AI infrastructure.
 Rules:
-- Answer ONLY from the CONTEXT passages. If the context does not contain the answer, say so plainly and suggest what the community could add; do not invent.
+- Answer ONLY from the CONTEXT passages. If no passage answers the question, leave source_paths empty and set confident=false; do not answer from general knowledge. An answer without a source is never shown.
 - Plain English, short paragraphs or bullets, no marketing tone. Max ~180 words.
 - Never give legal, tax or investment advice; you describe what the community material says.
 - Never mention or recommend vendors or products by name, and never suggest the community add vendor lists or comparisons.
@@ -109,6 +112,15 @@ export const ask = action({
         await ctx.runAction(internal.sync.syncRepo, {});
         hits = await ctx.runQuery(internal.kb.searchChunks, { q });
       }
+    }
+    if (hits.length === 0) {
+      // No passage found: refuse rather than answer from general knowledge.
+      return {
+        answer: NO_SOURCE_ANSWER,
+        sources: [],
+        alternatives: [],
+        confident: false,
+      };
     }
     const context = hits
       .map(
@@ -197,16 +209,22 @@ export const ask = action({
         }));
     };
     const sources: Src[] = pick(out.source_paths);
-    const alternatives = (out.alternatives ?? [])
-      .filter(a => a && typeof a.view === "string" && a.view.trim())
-      .slice(0, 5)
-      .map(a => ({ text: a.view.trim(), sources: pick(a.source_paths) }));
+    // Every shown answer must rest on at least one passage the reader can open.
+    const grounded = sources.length > 0;
+    const answer = grounded ? out.answer : NO_SOURCE_ANSWER;
+    const alternatives = grounded
+      ? (out.alternatives ?? [])
+          .filter(a => a && typeof a.view === "string" && a.view.trim())
+          .slice(0, 5)
+          .map(a => ({ text: a.view.trim(), sources: pick(a.source_paths) }))
+          .filter(a => a.sources.length > 0)
+      : [];
 
     // Keep a record of guardrail probes only; legitimate questions are not stored.
     if (Boolean(out.probe) || PROBE_RE.test(q)) {
       await ctx.runMutation(internal.kb.logQuestion, {
         question: q,
-        answer: out.answer,
+        answer,
         sources: sources.map((s: { path: string }) => s.path),
         ms: Date.now() - t0,
         ok: true,
@@ -215,10 +233,10 @@ export const ask = action({
       });
     }
     return {
-      answer: out.answer,
+      answer,
       sources,
       alternatives,
-      confident: Boolean(out.confident),
+      confident: grounded && Boolean(out.confident),
     };
   },
 });
