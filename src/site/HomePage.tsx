@@ -349,9 +349,8 @@ export function HomePage() {
               data-testid="no-compete-line"
               className="mt-7 sm:mt-8 max-w-[36rem] text-lg sm:text-xl leading-[1.5] text-ink/70"
             >
-              Open source foundational infrastructure and governance knowledge
-              on which no one competes, and where everyone wants shared
-              reference points for best practices
+              Open-source infrastructure and governance knowledge on which no
+              one competes.
             </p>
           </motion.div>
 

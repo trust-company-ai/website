@@ -32,7 +32,7 @@ runTest("Site password gate", async helper => {
     .locator('[data-testid="no-compete-line"]')
     .innerText();
   if (
-    !/where everyone wants shared reference points for best practice/.test(line)
+    !/infrastructure and governance knowledge on which no one competes/.test(line)
   )
     throw new Error(`no-compete line wrong: ${line}`);
   // Sticks across reloads and other pages.
