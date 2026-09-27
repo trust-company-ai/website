@@ -406,12 +406,9 @@ export function HomePage() {
             </h2>
           </div>
           <p className="text-[17px] sm:text-xl leading-relaxed text-muted-foreground">
-            This is the cumulative pattern drawn by AI from everything the
-            community has shared — the direction that carries the most support
-            so far. It will change as more trust companies and more documents
-            come in. Today it says: route work by consequence, not by
-            capability. The higher the stakes, the more human judgment stays in
-            the loop.
+            This reflects a consensus schematic, and indicates where
+            alternatives exist. It will evolve automatically as the library
+            grows.
           </p>
         </div>
 
