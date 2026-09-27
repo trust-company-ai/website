@@ -1,4 +1,4 @@
-import { useAction, useQuery } from "convex/react";
+import { useAction, useMutation, useQuery } from "convex/react";
 import { motion } from "framer-motion";
 import {
   type FormEvent,
@@ -242,8 +242,119 @@ function GateScreen({ onUnlocked }: { onUnlocked: (t: string) => void }) {
               {wrong ? "That password is not right." : ""}
             </p>
           </form>
+          <PasswordRequest />
         </section>
       </div>
+    </div>
+  );
+}
+
+/** "Contact us for the password" link under the password box; opens a short request form. */
+function PasswordRequest() {
+  const submitRequest = useMutation(api.accessRequests.submit);
+  const [open, setOpen] = useState(false);
+  const [name, setName] = useState("");
+  const [organization, setOrganization] = useState("");
+  const [email, setEmail] = useState("");
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState("");
+  const [done, setDone] = useState(false);
+  const firstRef = useRef<HTMLInputElement>(null);
+  useEffect(() => {
+    if (open) firstRef.current?.focus();
+  }, [open]);
+
+  async function send(e: FormEvent) {
+    e.preventDefault();
+    if (busy) return;
+    setBusy(true);
+    setError("");
+    try {
+      await submitRequest({ name, organization, email });
+      setDone(true);
+    } catch (err) {
+      const raw = err instanceof Error ? err.message : "";
+      const m = raw.match(/Please [^.]*\./);
+      setError(m ? m[0] : "Something went wrong. Please try again.");
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  return (
+    <div
+      data-testid="gate-request"
+      className="mx-auto max-w-7xl px-6 pb-24 sm:px-8 sm:pb-32 -mt-12 sm:-mt-16"
+    >
+      {!open ? (
+        <button
+          type="button"
+          data-testid="gate-request-open"
+          onClick={() => setOpen(true)}
+          className="text-xl text-white/70 underline decoration-white/30 underline-offset-[6px] transition-colors duration-300 hover:text-white hover:decoration-sky/80"
+        >
+          Contact us for the password
+        </button>
+      ) : done ? (
+        <p data-testid="gate-request-done" className="max-w-3xl text-xl text-white/80">
+          Thank you. Your request has been received.
+        </p>
+      ) : (
+        <form
+          onSubmit={send}
+          aria-label="Contact us for the password"
+          className="max-w-3xl"
+        >
+          <p className="text-xl text-white/80">Contact us for the password</p>
+          <div className="mt-6 flex flex-col gap-4">
+            <input
+              ref={firstRef}
+              data-testid="gate-request-name"
+              placeholder="Name"
+              aria-label="Name"
+              autoComplete="name"
+              value={name}
+              onChange={e => setName(e.target.value)}
+              className={`${GATE_FIELD} ring-white/10`}
+            />
+            <input
+              data-testid="gate-request-organization"
+              placeholder="Organization"
+              aria-label="Organization"
+              autoComplete="organization"
+              value={organization}
+              onChange={e => setOrganization(e.target.value)}
+              className={`${GATE_FIELD} ring-white/10`}
+            />
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
+              <input
+                data-testid="gate-request-email"
+                placeholder="Email"
+                aria-label="Email"
+                type="email"
+                autoComplete="email"
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+                className={`${GATE_FIELD} ring-white/10`}
+              />
+              <button
+                type="submit"
+                data-testid="gate-request-submit"
+                disabled={busy || !name.trim() || !organization.trim() || !email.trim()}
+                className="inline-flex h-16 shrink-0 items-center justify-center rounded-full bg-[#f5f6f7] px-10 text-xl font-medium text-ink transition-[background,opacity] duration-300 hover:bg-white disabled:opacity-40"
+              >
+                Send
+              </button>
+            </div>
+          </div>
+          <p
+            data-testid="gate-request-error"
+            className="mt-4 min-h-6 text-base text-red-300/90"
+          >
+            {error}
+          </p>
+        </form>
+      )}
     </div>
   );
 }

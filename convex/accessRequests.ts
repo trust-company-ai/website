@@ -3,32 +3,26 @@ import { mutation, query } from "./_generated/server";
 import { normalizeEmail } from "./accounts";
 import { assertReviewKey } from "./reviewKey";
 
-export const ROLES = ["executive", "regulator", "vendor", "other"] as const;
-
 /** Store a password request from the splash-page form. A sync job forwards new requests. */
 export const submit = mutation({
   args: {
     name: v.string(),
+    organization: v.string(),
     email: v.string(),
-    role: v.string(),
-    roleOther: v.optional(v.string()),
   },
   returns: v.null(),
   handler: async (ctx, a) => {
     const name = a.name.trim().slice(0, 200);
+    const organization = a.organization.trim().slice(0, 200);
     const email = normalizeEmail(a.email);
-    const roleOther = a.roleOther?.trim().slice(0, 200) || undefined;
     if (name.length < 2) throw new Error("Please enter your name.");
+    if (organization.length < 2) throw new Error("Please enter your organization.");
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
       throw new Error("Please enter a valid email address.");
-    if (!(ROLES as readonly string[]).includes(a.role))
-      throw new Error("Please choose one of the options.");
-    if (a.role === "other" && !roleOther) throw new Error("Please specify.");
     await ctx.db.insert("accessRequests", {
       name,
+      organization,
       email,
-      role: a.role,
-      roleOther: a.role === "other" ? roleOther : undefined,
       status: "new",
     });
     return null;

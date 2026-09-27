@@ -76,9 +76,10 @@ const schema = defineSchema({
   // "Contact us for a password" form on the splash page. Owner-only, never published.
   accessRequests: defineTable({
     name: v.string(),
+    organization: v.optional(v.string()),
     email: v.string(),
-    role: v.string(), // executive | regulator | vendor | other
-    roleOther: v.optional(v.string()), // free text when role = other
+    role: v.optional(v.string()), // older rows only
+    roleOther: v.optional(v.string()), // older rows only
     password: v.optional(v.string()), // older rows only
     status: v.string(), // new | delivered
   }).index("by_status", ["status"]),
