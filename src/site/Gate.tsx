@@ -176,12 +176,12 @@ function GateScreen({ onUnlocked }: { onUnlocked: (t: string) => void }) {
             className="mt-20 max-w-[52rem] space-y-6 text-[1.15rem] sm:text-[1.3rem] leading-[1.45] tracking-[-0.01em] text-white/75"
           >
             <p>
-              TrustCompanyAI.org is a non-profit project to facilitate
-              communication among independent trust companies on foundational
-              AI questions about which no one competes. For instance, where
-              should there be a &ldquo;human in the loop?&quot; Trust companies
-              and their regulators need a place to openly share insights and
-              lessons learned.
+              TrustCompanyAI.org is a non-profit project that helps
+              independent trust companies compare notes on the foundational AI
+              questions where no one competes &mdash; for instance, where should
+              there be a &ldquo;human in the loop&rdquo;? Trust companies and
+              their regulators need a place to share insights and lessons
+              learned openly.
             </p>
             <p>
               Here you can 1) upload documents, 2) ask the growing knowledge
