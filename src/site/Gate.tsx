@@ -132,6 +132,34 @@ function GateScreen({ onUnlocked }: { onUnlocked: (t: string) => void }) {
               <Slab3D className="w-[16rem] sm:w-[20rem] lg:w-[24rem] xl:w-[26rem] lg:mr-2" />
             </motion.div>
           </div>
+          <motion.div
+            {...rise(0.25)}
+            data-testid="gate-intro-top"
+            className="relative mx-auto max-w-7xl px-6 pb-10 sm:px-8 lg:pb-12"
+          >
+            <div className="max-w-[52rem] space-y-6 text-[1.15rem] sm:text-[1.3rem] leading-[1.45] tracking-[-0.01em] text-white/75">
+              <p>
+                TrustCompanyAI.org is a non-profit project born in a residency
+                at{" "}
+                <a
+                  href="https://www.legalquants.com/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-white underline decoration-white/40 underline-offset-4 hover:decoration-white"
+                >
+                  LegalQuants.com
+                </a>
+                , the global community of AI-enabled lawyers.
+              </p>
+              <p>
+                Its purpose is to support the trust company industry as it sets
+                standards and practices during a time of foundational change
+                prompted by AI. Its focus is the foundation of the industry,
+                where no one competes and everyone has an incentive to get it
+                right.
+              </p>
+            </div>
+          </motion.div>
         </section>
 
         {/* The three layers */}
@@ -173,30 +201,17 @@ function GateScreen({ onUnlocked }: { onUnlocked: (t: string) => void }) {
 
           <motion.div
             {...reveal()}
+            data-testid="gate-intro-below"
             className="mt-20 max-w-[52rem] space-y-6 text-[1.15rem] sm:text-[1.3rem] leading-[1.45] tracking-[-0.01em] text-white/75"
           >
             <p>
-              TrustCompanyAI.org is a non-profit for the independent trust
-              company industry, born in a residency at{" "}
-              <a
-                href="https://www.legalquants.com/"
-                target="_blank"
-                rel="noreferrer"
-                className="text-white underline decoration-white/40 underline-offset-4 hover:decoration-white"
-              >
-                LegalQuants.com
-              </a>
-              , the global community of AI-enabled lawyers.
+              An example of a foundational question: where does the industry
+              keep a &ldquo;human in the loop&rdquo;?
             </p>
             <p>
-              It works on the foundational AI questions no one competes on.
-              First among them: where does the industry keep a &ldquo;human in
-              the loop&rdquo;?
-            </p>
-            <p>
-              For chief technology officers making design decisions and
-              regulators making policy decisions, one shared communications
-              platform.
+              This platform is designed for chief technology officers making
+              design decisions and regulators making policy decisions, who need
+              a shared place to speed up understanding and decision-making.
             </p>
             <p>
               Qualified professionals upload documents, ask the growing
