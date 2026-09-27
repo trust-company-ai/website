@@ -133,6 +133,16 @@ export function SubmitPage() {
             submit anonymized documents or documents you are comfortable
             sharing. Anything you submit may become public on the website.
           </p>
+          <p
+            className="text-muted-foreground max-w-2xl"
+            data-testid="submit-facts"
+          >
+            Who can see it afterwards: anyone with the site password, and anyone
+            on GitHub once it is in the public repository. Whether your firm is
+            named: the form does not ask for a firm name and your contact is
+            never published, so your firm is named only if you name it in the
+            material itself.
+          </p>
         </div>
 
         {step === "write" && (
