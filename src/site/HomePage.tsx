@@ -7,6 +7,7 @@ import { APP_NAME } from "@/lib/constants";
 import { ACCEPTED_EXT, readUpload } from "@/lib/readUpload";
 import { cn } from "@/lib/utils";
 import { LayersDiagram, TiersDiagram } from "./ReferenceDiagram";
+import { SplashIntro } from "./SplashIntro";
 import { SITE_STATS } from "./siteStats";
 
 /**
@@ -323,6 +324,9 @@ export function HomePage() {
 
   return (
     <div className="flex-1">
+      {/* Introduction (formerly the page before the password) */}
+      <SplashIntro />
+
       {/* Hero: headline, then upload (left) and chat (right) side by side. */}
       <section className="relative overflow-hidden text-ink" data-testid="hero">
         <div className="tcai-grid pointer-events-none absolute inset-0" />
@@ -374,7 +378,6 @@ export function HomePage() {
               </div>
             </motion.div>
           </div>
-
         </div>
       </section>
 
