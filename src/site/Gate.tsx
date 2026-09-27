@@ -176,8 +176,18 @@ function GateScreen({ onUnlocked }: { onUnlocked: (t: string) => void }) {
             className="mt-20 max-w-[52rem] space-y-6 text-[1.15rem] sm:text-[1.3rem] leading-[1.45] tracking-[-0.01em] text-white/75"
           >
             <p>
-              TrustCompanyAI.org is a non-profit project for the independent
-              trust company industry as its leaders navigate foundational AI
+              TrustCompanyAI.org is the product of a residency in{" "}
+              <a
+                href="https://www.legalquants.com/"
+                target="_blank"
+                rel="noreferrer"
+                className="text-white underline decoration-white/40 underline-offset-4 hover:decoration-white"
+              >
+                LegalQuants.com
+              </a>
+              , the non-profit global community of AI-enabled lawyers. It is a
+              non-profit project for the independent trust company industry as
+              its leaders navigate foundational AI
               questions on the level where no one competes, such as the
               question of where there should be a &ldquo;human in the
               loop&rdquo; in the industry?
