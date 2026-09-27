@@ -1,4 +1,4 @@
-import { useAction, useMutation, useQuery } from "convex/react";
+import { useAction, useQuery } from "convex/react";
 import { motion } from "framer-motion";
 import {
   type FormEvent,
@@ -176,24 +176,12 @@ function GateScreen({ onUnlocked }: { onUnlocked: (t: string) => void }) {
             className="mt-20 max-w-[52rem] space-y-6 text-[1.15rem] sm:text-[1.3rem] leading-[1.45] tracking-[-0.01em] text-white/75"
           >
             <p>
-              TrustCompanyAI.org is a non-profit project of trusts lawyers
-              within{" "}
-              <a
-                href="https://www.legalquants.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white underline decoration-white/40 underline-offset-4 hover:decoration-white"
-              >
-                LegalQuants
-              </a>
-              , an international educational group of AI-focused lawyers. We
-              want independent trust companies to survive the disruption ahead.
-            </p>
-            <p>
-              Some choices are foundational. No one competes on them. For
-              instance, where does a &ldquo;human in the loop&rdquo; belong?
-              Trust companies and their regulators need a place to openly share
-              insights and lessons learned.
+              TrustCompanyAI.org is a non-profit project to facilitate
+              communication among independent trust companies on foundational
+              AI questions about which no one competes. For instance, where
+              should there be a &ldquo;human in the loop?&quot; Trust companies
+              and their regulators need a place to openly share insights and
+              lessons learned.
             </p>
             <p>
               Here you can 1) upload documents, 2) ask the growing knowledge
@@ -201,10 +189,8 @@ function GateScreen({ onUnlocked }: { onUnlocked: (t: string) => void }) {
               update automatically. Tech professionals will find schematics and
               open source code on GitHub.
             </p>
-            <p>Contact us for a password.</p>
           </motion.div>
 
-          <AccessRequestForm />
         </section>
 
         {/* Password – the only way in, at the very bottom after all the content */}
@@ -259,154 +245,5 @@ function GateScreen({ onUnlocked }: { onUnlocked: (t: string) => void }) {
         </section>
       </div>
     </div>
-  );
-}
-
-const ROLE_OPTIONS: { value: string; label: string }[] = [
-  { value: "executive", label: "Trust company executive" },
-  { value: "regulator", label: "Regulator" },
-  { value: "vendor", label: "Vendor" },
-  { value: "other", label: "Other" },
-];
-
-const FIELD =
-  "h-14 w-full rounded-full bg-white/[.07] px-6 text-lg text-white outline-none ring-1 ring-white/10 transition-[box-shadow,background] duration-300 placeholder:text-white/30 focus:bg-white/[.09] focus:ring-2 focus:ring-sky/70";
-
-/** "Contact us for a password" form: name, email, who they are. Stored for the owner only. */
-function AccessRequestForm() {
-  const send = useMutation(api.accessRequests.submit);
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [role, setRole] = useState("");
-  const [roleOther, setRoleOther] = useState("");
-  const [busy, setBusy] = useState(false);
-  const [error, setError] = useState("");
-  const [done, setDone] = useState(false);
-  const ready =
-    name.trim().length > 1 &&
-    email.includes("@") &&
-    role !== "" &&
-    (role !== "other" || roleOther.trim().length > 0);
-
-  async function submit(e: FormEvent) {
-    e.preventDefault();
-    if (!ready || busy) return;
-    setBusy(true);
-    setError("");
-    try {
-      await send({
-        name,
-        email,
-        role,
-        roleOther: role === "other" ? roleOther : undefined,
-      });
-      setDone(true);
-    } catch (err) {
-      const msg = err instanceof Error ? err.message : "";
-      setError(
-        msg.replace(/^.*Uncaught Error:\s*/s, "").split("\n")[0] ||
-          "Something went wrong. Please try again.",
-      );
-    } finally {
-      setBusy(false);
-    }
-  }
-
-  if (done)
-    return (
-      <div
-        data-testid="access-done"
-        className="mt-10 max-w-[52rem] space-y-4 text-[1.15rem] sm:text-[1.3rem] leading-[1.45] text-white/75"
-      >
-        <p>Thank you. Your request has been received.</p>
-      </div>
-    );
-
-  return (
-    <form
-      onSubmit={submit}
-      data-testid="access-form"
-      className="mt-10 max-w-xl space-y-6"
-    >
-      <div className="flex flex-col gap-3 sm:flex-row">
-        <input
-          data-testid="access-name"
-          type="text"
-          autoComplete="name"
-          placeholder="Name"
-          aria-label="Name"
-          value={name}
-          onChange={e => setName(e.target.value)}
-          className={FIELD}
-        />
-        <input
-          data-testid="access-email"
-          type="email"
-          autoComplete="email"
-          placeholder="Email"
-          aria-label="Email"
-          value={email}
-          onChange={e => setEmail(e.target.value)}
-          className={FIELD}
-        />
-      </div>
-      <fieldset>
-        <legend className="font-mono text-[12.5px] tracking-[0.2em] uppercase text-white/50">
-          Are you a
-        </legend>
-        <div className="mt-4 flex flex-wrap gap-3" role="radiogroup">
-          {ROLE_OPTIONS.map(o => {
-            const on = role === o.value;
-            return (
-              <button
-                key={o.value}
-                type="button"
-                role="radio"
-                aria-checked={on}
-                data-testid={`access-role-${o.value}`}
-                onClick={() => setRole(o.value)}
-                className={`h-12 rounded-full px-6 text-base transition-[background,color] duration-300 ring-1 ${
-                  on
-                    ? "bg-[#f5f6f7] text-ink ring-transparent"
-                    : "bg-white/[.07] text-white/80 ring-white/10 hover:bg-white/[.1]"
-                }`}
-              >
-                {o.label}
-              </button>
-            );
-          })}
-        </div>
-        {role === "other" && (
-          <input
-            data-testid="access-role-other"
-            type="text"
-            placeholder="Please specify"
-            aria-label="Please specify"
-            value={roleOther}
-            onChange={e => setRoleOther(e.target.value)}
-            className={`${FIELD} mt-4`}
-          />
-        )}
-      </fieldset>
-      <div>
-        <button
-          type="submit"
-          data-testid="access-submit"
-          disabled={busy || !ready}
-          className="group inline-flex h-14 items-center gap-2.5 rounded-full bg-[#f5f6f7] px-8 text-lg font-medium text-ink transition-[transform,background] duration-[450ms] ease-[cubic-bezier(.16,1,.3,1)] hover:-translate-y-0.5 hover:bg-white disabled:opacity-40 disabled:hover:translate-y-0"
-        >
-          Request a password
-          <span className="transition-transform duration-[450ms] ease-[cubic-bezier(.16,1,.3,1)] group-hover:translate-x-1">
-            →
-          </span>
-        </button>
-        <p
-          data-testid="access-error"
-          className="mt-4 min-h-5 text-sm text-white/50"
-        >
-          {error}
-        </p>
-      </div>
-    </form>
   );
 }
