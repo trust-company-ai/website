@@ -7,7 +7,6 @@ import {
   ChevronRight,
   Loader2,
   Maximize2,
-  MessageSquare,
   Minimize2,
 } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
@@ -254,7 +253,7 @@ export function ChatPanel({
       <div
         className={cn(
           heroEmpty
-            ? "flex flex-col rounded-2xl bg-background px-5 pt-4 pb-3 focus-within:ring-2 focus-within:ring-primary/30"
+            ? "flex flex-col rounded-2xl border border-black/[.08] bg-white px-5 pt-4 pb-3 shadow-[0_1px_2px_rgba(0,0,0,.04),0_12px_32px_-16px_rgba(29,63,138,.25)] transition-shadow focus-within:border-navy focus-within:ring-2 focus-within:ring-primary/30"
             : "flex items-end gap-2 rounded-full bg-background px-4 py-2 focus-within:ring-2 focus-within:ring-ring/40",
         )}
       >
@@ -330,16 +329,16 @@ export function ChatPanel({
   if (hero && msgs.length === 0) {
     return (
       <div data-testid="chat-panel" className="flex w-full flex-col">
-        <span className="flex size-14 items-center justify-center rounded-full bg-primary text-primary-foreground">
-          <MessageSquare className="size-6" />
-        </span>
+        <p className="font-mono text-[12.5px] tracking-[0.2em] text-navy tabular-nums">
+          02
+        </p>
         <label
           htmlFor="hero-chat-input"
-          className="mt-7 block text-[1.6rem] sm:text-[1.9rem] font-semibold leading-[1.15] tracking-[-0.02em] text-primary"
+          className="mt-4 block text-[1.6rem] sm:text-[1.9rem] font-semibold leading-[1.15] tracking-[-0.02em]"
         >
-          Ask a question of the open source knowledge base
+          Ask the chatbot here
         </label>
-        <div className="mt-5">{form}</div>
+        <div className="mt-6">{form}</div>
       </div>
     );
   }

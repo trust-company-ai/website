@@ -227,16 +227,16 @@ function HeroDropZone() {
 
   return (
     <div data-testid="upload-panel" className="flex w-full flex-col">
-      <span className="flex size-14 items-center justify-center rounded-full bg-primary text-primary-foreground">
-        <Upload className="size-6" />
-      </span>
+      <p className="font-mono text-[12.5px] tracking-[0.2em] text-navy tabular-nums">
+        01
+      </p>
       <label
         htmlFor="hero-file-input"
-        className="mt-7 block cursor-pointer text-[1.6rem] sm:text-[1.9rem] font-semibold leading-[1.15] tracking-[-0.02em] text-primary"
+        className="mt-4 block cursor-pointer text-[1.6rem] sm:text-[1.9rem] font-semibold leading-[1.15] tracking-[-0.02em]"
       >
-        Contribute documents or insights
+        Upload non-confidential documents here
       </label>
-      <div className="mt-5">
+      <div className="mt-6">
         <div
           data-testid="drop-zone"
           role="button"
@@ -260,9 +260,10 @@ function HeroDropZone() {
             void take(e.dataTransfer.files?.[0]);
           }}
           className={cn(
-            "flex cursor-pointer flex-col rounded-2xl bg-background px-5 pt-4 pb-3 outline-none transition-shadow",
-            "focus-visible:ring-2 focus-visible:ring-primary/30",
-            over && "ring-2 ring-primary/40",
+            "flex cursor-pointer flex-col rounded-2xl border border-black/[.08] bg-white px-5 pt-4 pb-3 outline-none transition-shadow",
+            "shadow-[0_1px_2px_rgba(0,0,0,.04),0_12px_32px_-16px_rgba(29,63,138,.25)]",
+            "hover:border-navy/40 focus-visible:ring-2 focus-visible:ring-primary/30",
+            over && "border-navy ring-2 ring-primary/30",
           )}
         >
           <input
@@ -354,21 +355,15 @@ export function HomePage() {
           </motion.div>
 
           {/* Upload left, chat right — equal size */}
-          <div className="mt-12 sm:mt-14 grid gap-6 lg:grid-cols-2 lg:gap-8 items-stretch">
+          <div className="mt-14 sm:mt-16 grid gap-12 lg:grid-cols-2 lg:gap-16 items-stretch">
             <motion.div {...rise(0.2)} className="flex">
-              <div
-                className="flex w-full flex-col rounded-[1.75rem] bg-[#f3f4f6] p-7 sm:p-9"
-                data-testid="upload-card"
-              >
+              <div className="flex w-full flex-col" data-testid="upload-card">
                 <HeroDropZone />
               </div>
             </motion.div>
 
             <motion.div {...rise(0.25)} className="flex">
-              <div
-                className="flex w-full flex-col rounded-[1.75rem] bg-[#f3f4f6] p-7 sm:p-9"
-                data-testid="chat-card"
-              >
+              <div className="flex w-full flex-col" data-testid="chat-card">
                 <ChatPanel hero />
               </div>
             </motion.div>
@@ -404,37 +399,20 @@ export function HomePage() {
         </section>
       )}
 
-      {/* License statement */}
-      <motion.section
-        {...reveal()}
-        className="mx-auto max-w-6xl px-4 sm:px-6 pt-20 sm:pt-28"
-      >
-        <div
-          className="rounded-[1.75rem] bg-[#f3f4f6] px-8 py-10 sm:px-14 sm:py-14 grid gap-8 lg:grid-cols-2 lg:gap-20 items-center"
-          data-testid="license"
-        >
-          <h2 className="text-[2rem] sm:text-[2.5rem] font-medium leading-[1.08] tracking-[-0.025em]">
-            Apache 2.0 license
-          </h2>
-          <p className="text-[17px] sm:text-[19px] leading-relaxed text-muted-foreground">
-            Everything in the community repository is published under the Apache
-            2.0 license. Anyone may use, copy, change, and share it,
-            commercially or otherwise, at no cost. No permission, sign-up, or
-            payment is required. The only condition is that the license notice
-            stays with the material. It is provided as is, without warranty.
-          </p>
-        </div>
-      </motion.section>
-
       {/* Reference pattern */}
       <motion.section
         {...reveal()}
-        className="mx-auto max-w-6xl px-4 sm:px-6 pt-20 sm:pt-28"
+        className="mx-auto max-w-6xl px-4 sm:px-6 pt-10 sm:pt-14"
       >
         <div className="grid gap-6 lg:grid-cols-2 lg:gap-20 items-end">
-          <h2 className="text-[2rem] sm:text-[2.5rem] font-medium leading-[1.08] tracking-[-0.025em]">
-            The community reference pattern
-          </h2>
+          <div>
+            <p className="mb-4 font-mono text-[12.5px] tracking-[0.2em] text-navy tabular-nums">
+              03
+            </p>
+            <h2 className="text-[2rem] sm:text-[2.5rem] font-medium leading-[1.08] tracking-[-0.025em]">
+              The community reference pattern
+            </h2>
+          </div>
           <p className="text-[17px] sm:text-xl leading-relaxed text-muted-foreground">
             This is the cumulative pattern drawn by AI from everything the
             community has shared — the direction that carries the most support
@@ -466,6 +444,28 @@ export function HomePage() {
           From Framework 01, Reference Architecture, Draft v0.2 in the community
           repository, as of September 8, 2026.
         </p>
+      </motion.section>
+
+      {/* License statement */}
+      <motion.section
+        {...reveal()}
+        className="mx-auto max-w-6xl px-4 sm:px-6 pt-20 sm:pt-28"
+      >
+        <div
+          className="rounded-[1.75rem] bg-[#f3f4f6] px-8 py-10 sm:px-14 sm:py-14 grid gap-8 lg:grid-cols-2 lg:gap-20 items-center"
+          data-testid="license"
+        >
+          <h2 className="text-[2rem] sm:text-[2.5rem] font-medium leading-[1.08] tracking-[-0.025em]">
+            Apache 2.0 license
+          </h2>
+          <p className="text-[17px] sm:text-[19px] leading-relaxed text-muted-foreground">
+            Everything in the community repository is published under the Apache
+            2.0 license. Anyone may use, copy, change, and share it,
+            commercially or otherwise, at no cost. No permission, sign-up, or
+            payment is required. The only condition is that the license notice
+            stays with the material. It is provided as is, without warranty.
+          </p>
+        </div>
       </motion.section>
 
       {/* Advisory Board */}
