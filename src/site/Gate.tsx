@@ -140,9 +140,9 @@ function GateScreen({ onUnlocked }: { onUnlocked: (t: string) => void }) {
               3 = smallest on top, all flush right so the left edges step 1 → 2 → 3. */}
           <motion.p
             {...reveal()}
-            className="mb-6 font-mono text-[12.5px] tracking-[0.2em] uppercase text-white/50"
+            className="mb-6 font-mono text-lg sm:text-xl lg:text-2xl tracking-[0.18em] uppercase text-white/85"
           >
-            Three layers of AI
+            There are three layers
           </motion.p>
           <ol
             className="flex flex-col gap-4 sm:flex-col-reverse sm:items-end sm:gap-5"
