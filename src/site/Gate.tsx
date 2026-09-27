@@ -176,18 +176,22 @@ function GateScreen({ onUnlocked }: { onUnlocked: (t: string) => void }) {
             className="mt-20 max-w-[52rem] space-y-6 text-[1.15rem] sm:text-[1.3rem] leading-[1.45] tracking-[-0.01em] text-white/75"
           >
             <p>
-              TrustCompanyAI.org is a non-profit project that helps
-              independent trust companies compare notes on the foundational AI
-              questions where no one competes &mdash; for instance, where should
-              there be a &ldquo;human in the loop&rdquo;? Trust companies and
-              their regulators need a place to share insights and lessons
-              learned openly.
+              TrustCompanyAI.org is a non-profit project for the independent
+              trust company industry as its leaders navigate foundational AI
+              questions on the level where no one competes, such as the
+              question of where there should be a &ldquo;human in the
+              loop&rdquo; in the industry?
             </p>
             <p>
-              Here you can 1) upload documents, 2) ask the growing knowledge
-              base, and 3) follow the consensus diagrams and analyses as they
-              update automatically. Tech professionals will find schematics and
-              open source code on GitHub.
+              It is meant to be used by chief technology officers making design
+              decisions, and by regulators making policy decisions. Both need an
+              updated communications platform.
+            </p>
+            <p>
+              Here qualified professionals can 1) upload documents, 2) ask the
+              growing knowledge base, and 3) follow the consensus diagrams as
+              they update automatically. Tech professionals will find
+              schematics and open source code on GitHub.
             </p>
           </motion.div>
 
