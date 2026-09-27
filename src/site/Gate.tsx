@@ -176,7 +176,8 @@ function GateScreen({ onUnlocked }: { onUnlocked: (t: string) => void }) {
             className="mt-20 max-w-[52rem] space-y-6 text-[1.15rem] sm:text-[1.3rem] leading-[1.45] tracking-[-0.01em] text-white/75"
           >
             <p>
-              TrustCompanyAI.org is the product of a residency in{" "}
+              TrustCompanyAI.org is a non-profit for the independent trust
+              company industry, born in a residency at{" "}
               <a
                 href="https://www.legalquants.com/"
                 target="_blank"
@@ -185,23 +186,22 @@ function GateScreen({ onUnlocked }: { onUnlocked: (t: string) => void }) {
               >
                 LegalQuants.com
               </a>
-              , the non-profit global community of AI-enabled lawyers. It is a
-              non-profit project for the independent trust company industry as
-              its leaders navigate foundational AI
-              questions on the level where no one competes, such as the
-              question of where there should be a &ldquo;human in the
-              loop&rdquo; in the industry?
+              , the global community of AI-enabled lawyers.
             </p>
             <p>
-              It is meant to be used by chief technology officers making design
-              decisions, and by regulators making policy decisions. Both need an
-              updated communications platform.
+              It works on the foundational AI questions no one competes on.
+              First among them: where does the industry keep a &ldquo;human in
+              the loop&rdquo;?
             </p>
             <p>
-              Here qualified professionals can 1) upload documents, 2) ask the
-              growing knowledge base, and 3) follow the consensus diagrams as
-              they update automatically. Tech professionals will find
-              schematics and open source code on GitHub.
+              For chief technology officers making design decisions and
+              regulators making policy decisions, one shared communications
+              platform.
+            </p>
+            <p>
+              Qualified professionals upload documents, ask the growing
+              knowledge base, and follow the consensus diagrams as they update.
+              Schematics and open source code are on GitHub.
             </p>
           </motion.div>
 
