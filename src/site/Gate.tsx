@@ -95,7 +95,7 @@ function GateScreen({ onUnlocked }: { onUnlocked: (t: string) => void }) {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, ease }}
       >
-        <div className="mx-auto flex max-w-7xl flex-col gap-1.5 px-6 py-3 sm:min-h-[4.5rem] sm:flex-row sm:items-center sm:justify-between sm:gap-3 sm:py-0 sm:px-8">
+        <div className="mx-auto flex max-w-7xl items-center px-6 py-3 sm:min-h-[4.5rem] sm:py-0 sm:px-8">
           <div className="flex items-center gap-3">
             <span className="flex size-9 items-center justify-center rounded-[10px] bg-white/[.08] ring-1 ring-white/10">
               <Mark className="size-6 !text-white" />
