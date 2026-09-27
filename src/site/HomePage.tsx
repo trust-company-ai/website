@@ -369,14 +369,6 @@ export function HomePage() {
             </motion.div>
           </div>
 
-          <motion.p
-            {...rise(0.3)}
-            data-testid="built-on-line"
-            className="mt-10 sm:mt-12 max-w-[30rem] text-[14px] leading-6 text-ink/45"
-          >
-            A not-for-profit project built on GitHub, Slack, and
-            Claude&nbsp;Code as part of the global LegalQuants residency program
-          </motion.p>
         </div>
       </section>
 
@@ -459,11 +451,9 @@ export function HomePage() {
             Apache 2.0 license
           </h2>
           <p className="text-[17px] sm:text-[19px] leading-relaxed text-muted-foreground">
-            Everything in the community repository is published under the Apache
-            2.0 license. Anyone may use, copy, change, and share it,
-            commercially or otherwise, at no cost. No permission, sign-up, or
-            payment is required. The only condition is that the license notice
-            stays with the material. It is provided as is, without warranty.
+            Anyone may use, copy, change, and share it, commercially or
+            otherwise, at no cost. The license notice stays with the material.
+            It is provided as is, without warranty.
           </p>
         </div>
       </motion.section>
