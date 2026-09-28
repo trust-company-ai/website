@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Mark } from "@/site/Mark";
 import { Slab3D } from "@/site/Slab3D";
 
 /**
@@ -35,25 +36,40 @@ export function SplashIntro() {
       data-testid="splash-intro"
       className="gate-dark bg-ink pb-24 text-[#f5f6f7] antialiased selection:bg-sky/30 sm:pb-32"
     >
-      {/* Site name and tagline: approved wording, verbatim */}
-      <section
-        data-testid="splash-name"
-        className="relative mx-auto max-w-7xl px-6 pt-14 sm:px-8 sm:pt-20"
-      >
-        <motion.div {...rise(0)} className="max-w-[52rem]">
-          <p className="text-[3rem] sm:text-[4rem] lg:text-[4.6rem] font-semibold leading-[1] tracking-[-0.04em] text-white">
-            TrustOrgs.AI
-          </p>
-          <p className="mt-5 text-[1.35rem] sm:text-[1.6rem] leading-[1.35] tracking-[-0.01em] text-white/80">
-            An AI platform for the trust company industry
-          </p>
-        </motion.div>
+      {/* Site name and tagline: approved wording, verbatim. Mark and name as one
+          lockup on the left, the slab on the right — the old splash hero. */}
+      <section data-testid="splash-name" className="relative overflow-hidden">
+        <div className="tcai-grid pointer-events-none absolute inset-0" />
+        <div className="pointer-events-none absolute -right-40 top-10 size-[42rem] rounded-full bg-[#1d3f8a]/12 blur-[140px]" />
+        <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-6 pt-14 pb-6 sm:px-8 sm:pt-20 lg:grid-cols-12 lg:gap-6 lg:py-16">
+          <motion.div {...rise(0)} className="lg:col-span-7">
+            <div className="flex items-center gap-5 sm:gap-6">
+              <span className="flex size-[3.6rem] shrink-0 items-center justify-center rounded-[16px] bg-white/[.08] ring-1 ring-white/10 sm:size-[4.6rem] sm:rounded-[20px] lg:size-[5.2rem] lg:rounded-[22px]">
+                <Mark className="size-[2.5rem] !text-white sm:size-[3.2rem] lg:size-[3.6rem]" />
+              </span>
+              <p className="text-[3rem] font-semibold leading-[1] tracking-[-0.04em] text-white sm:text-[4rem] lg:text-[4.6rem]">
+                TrustOrgs.AI
+              </p>
+            </div>
+            <p className="mt-7 max-w-[34rem] text-[1.35rem] leading-[1.35] tracking-[-0.01em] text-white/80 sm:text-[1.6rem]">
+              A platform for the trust company industry to chart its own AI future
+            </p>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, ease }}
+            className="flex justify-center lg:col-span-5 lg:justify-end"
+          >
+            <Slab3D className="w-[16rem] sm:w-[20rem] lg:w-[24rem] xl:w-[26rem] lg:mr-2" />
+          </motion.div>
+        </div>
       </section>
 
       {/* Welcome letter: approved wording, verbatim */}
       <section
         data-testid="splash-welcome"
-        className="relative mx-auto max-w-7xl px-6 pt-12 sm:px-8 sm:pt-14"
+        className="relative mx-auto max-w-7xl px-6 pt-8 sm:px-8 sm:pt-10"
       >
         <motion.div
           {...rise(0.1)}
@@ -115,7 +131,7 @@ export function SplashIntro() {
             reason, we will understand.
           </p>
           <p>
-            And if other industry leaders with technology experience would like
+            If other industry leaders with technology experience would like
             to participate on Slack and GitHub in improving this platform over
             time, we&rsquo;ll be delighted to have the company.
           </p>
@@ -124,23 +140,8 @@ export function SplashIntro() {
         </motion.div>
       </section>
 
-      {/* Floating slab above the three layers */}
-      <section className="relative overflow-hidden">
-        <div className="tcai-grid pointer-events-none absolute inset-0" />
-        <div className="pointer-events-none absolute -right-40 top-10 size-[42rem] rounded-full bg-[#1d3f8a]/12 blur-[140px]" />
-        <div className="relative mx-auto flex max-w-7xl justify-center px-6 pt-10 pb-6 sm:px-8 sm:pt-12 lg:justify-end lg:py-10">
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, ease }}
-          >
-            <Slab3D className="w-[16rem] sm:w-[20rem] lg:w-[24rem] xl:w-[26rem] lg:mr-2" />
-          </motion.div>
-        </div>
-      </section>
-
       {/* The three layers */}
-      <section className="mx-auto max-w-7xl px-6 sm:px-8 pt-8 lg:pt-4">
+      <section className="mx-auto max-w-7xl px-6 sm:px-8 pt-16 sm:pt-20">
         {/* Stacked like a building: 1 = full-width foundation at the bottom,
             3 = smallest on top, all flush right so the left edges step 1 → 2 → 3. */}
         <motion.p

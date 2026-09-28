@@ -24,17 +24,34 @@ function GitHubMark() {
   );
 }
 
-/** Same bar as the splash page: sticky, frosted once you scroll. */
-export function SiteHeader({ dark: _dark = false }: { dark?: boolean }) {
+/** Same bar as the splash page: sticky, frosted once you scroll. Dark on the home page. */
+export function SiteHeader({ dark = false }: { dark?: boolean }) {
   return (
-    <header className="sticky top-0 z-50 border-b border-black/[.06] bg-white/80 backdrop-blur-md text-foreground">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+    <header
+      className={cn(
+        "sticky top-0 z-50 border-b backdrop-blur-md",
+        dark
+          ? "gate-dark border-white/[.06] bg-ink/70 text-[#f5f6f7]"
+          : "border-black/[.06] bg-white/80 text-foreground",
+      )}
+    >
+      <div
+        className={cn(
+          "mx-auto",
+          dark ? "max-w-7xl px-6 sm:px-8" : "max-w-6xl px-4 sm:px-6",
+        )}
+      >
         <div className="flex h-16 sm:h-[4.5rem] items-center">
           <Link
             to="/"
             className="flex items-center gap-3 font-sans font-semibold text-[17px] sm:text-lg tracking-tight hover:opacity-80"
           >
-            <span className="flex size-9 items-center justify-center rounded-[10px] bg-navy">
+            <span
+              className={cn(
+                "flex size-9 items-center justify-center rounded-[10px]",
+                dark ? "bg-white/[.08] ring-1 ring-white/10" : "bg-navy",
+              )}
+            >
               <Mark className="size-6 !text-white" />
             </span>
             <span>{APP_NAME}</span>
@@ -44,7 +61,12 @@ export function SiteHeader({ dark: _dark = false }: { dark?: boolean }) {
             target="_blank"
             rel="noreferrer"
             data-testid="header-github"
-            className="ml-auto flex items-center gap-2 rounded-full bg-[#f3f4f6] px-4 py-2 text-[15px] font-medium text-ink/85 transition-colors hover:bg-[#eceef1] hover:text-ink"
+            className={cn(
+              "ml-auto flex items-center gap-2 rounded-full px-4 py-2 text-[15px] font-medium transition-colors",
+              dark
+                ? "bg-white/[.08] text-white/85 ring-1 ring-white/10 hover:bg-white/[.12] hover:text-white"
+                : "bg-[#f3f4f6] text-ink/85 hover:bg-[#eceef1] hover:text-ink",
+            )}
           >
             <GitHubMark />
             <span>GitHub version</span>
