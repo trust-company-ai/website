@@ -49,13 +49,6 @@ export function SiteHeader({ dark: _dark = false }: { dark?: boolean }) {
             <GitHubMark />
             <span>GitHub version</span>
           </a>
-          <Link
-            to="/support"
-            data-testid="header-support"
-            className="ml-3 flex items-center rounded-full bg-navy px-4 py-2 text-[15px] font-medium text-white transition-opacity hover:opacity-90"
-          >
-            Support
-          </Link>
         </div>
       </div>
     </header>
