@@ -236,3 +236,8 @@
   background-image: radial-gradient(rgba(255,255,255,0.09) 1px, transparent 1px);
 }
 .gate-dark { color-scheme: dark; }
+
+/* Home introduction: dot grid fades out toward the bottom of the block */
+.splash-grid {
+  mask-image: linear-gradient(to bottom, black 0%, black 35%, transparent 100%);
+}

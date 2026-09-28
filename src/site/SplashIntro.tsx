@@ -34,101 +34,113 @@ export function SplashIntro() {
   return (
     <div
       data-testid="splash-intro"
-      className="gate-dark bg-ink pb-24 text-[#f5f6f7] antialiased selection:bg-sky/30 sm:pb-32"
+      className="gate-dark relative overflow-hidden bg-ink pb-24 text-[#f5f6f7] antialiased selection:bg-sky/30 sm:pb-32"
     >
+      {/* One continuous backdrop for the whole dark block: dot grid fading out
+          downward, a soft blue glow behind the slab, no hard edge between sections. */}
+      <div className="tcai-grid splash-grid pointer-events-none absolute inset-x-0 top-0 h-[60rem]" />
+      <div className="pointer-events-none absolute -right-48 -top-24 size-[48rem] rounded-full bg-[#1d3f8a]/20 blur-[160px]" />
+      <div className="pointer-events-none absolute -left-64 top-[38rem] size-[40rem] rounded-full bg-[#1d3f8a]/10 blur-[160px]" />
+
       {/* Site name and tagline: approved wording, verbatim. Mark and name as one
-          lockup on the left, the slab on the right — the old splash hero. */}
-      <section data-testid="splash-name" className="relative overflow-hidden">
-        <div className="tcai-grid pointer-events-none absolute inset-0" />
-        <div className="pointer-events-none absolute -right-40 top-10 size-[42rem] rounded-full bg-[#1d3f8a]/12 blur-[140px]" />
-        <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-6 pt-14 pb-6 sm:px-8 sm:pt-20 lg:grid-cols-12 lg:gap-6 lg:py-16">
+          lockup, the tagline as the statement line, the slab on the right. */}
+      <section data-testid="splash-name" className="relative">
+        <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-6 pt-16 pb-10 sm:px-8 sm:pt-24 lg:grid-cols-12 lg:gap-8 lg:pt-28 lg:pb-16">
           <motion.div {...rise(0)} className="lg:col-span-7">
-            <div className="flex items-center gap-5 sm:gap-6">
-              <span className="flex size-[3.6rem] shrink-0 items-center justify-center rounded-[16px] bg-white/[.08] ring-1 ring-white/10 sm:size-[4.6rem] sm:rounded-[20px] lg:size-[5.2rem] lg:rounded-[22px]">
-                <Mark className="size-[2.5rem] !text-white sm:size-[3.2rem] lg:size-[3.6rem]" />
+            <div className="flex items-center gap-4">
+              <span className="flex size-[3rem] shrink-0 items-center justify-center rounded-[14px] bg-white/[.08] ring-1 ring-white/10 sm:size-[3.4rem] sm:rounded-[16px]">
+                <Mark className="size-[2.1rem] !text-white sm:size-[2.4rem]" />
               </span>
-              <p className="text-[3rem] font-semibold leading-[1] tracking-[-0.04em] text-white sm:text-[4rem] lg:text-[4.6rem]">
+              <p className="text-[1.9rem] font-semibold leading-none tracking-[-0.03em] text-white sm:text-[2.3rem]">
                 TrustOrgs.AI
               </p>
             </div>
-            <p className="mt-7 max-w-[34rem] text-[1.35rem] leading-[1.35] tracking-[-0.01em] text-white/80 sm:text-[1.6rem]">
-              A platform for the trust company industry to chart its own AI future
+            <p className="mt-10 max-w-[13ch] text-[2.75rem] font-semibold leading-[1.04] tracking-[-0.04em] text-white sm:text-[3.6rem] lg:text-[4.1rem] xl:text-[4.4rem]">
+              A platform for the trust company industry to chart its own{" "}
+              <span className="inline-block whitespace-nowrap border-b-[4px] border-sky/80 leading-[0.9]">
+                AI future
+              </span>
             </p>
           </motion.div>
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, ease }}
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease, delay: 0.15 }}
             className="flex justify-center lg:col-span-5 lg:justify-end"
           >
-            <Slab3D className="w-[16rem] sm:w-[20rem] lg:w-[24rem] xl:w-[26rem] lg:mr-2" />
+            <Slab3D className="w-[15rem] sm:w-[19rem] lg:w-[23rem] xl:w-[25rem] lg:mr-2" />
           </motion.div>
         </div>
       </section>
 
-      {/* Welcome letter: approved wording, verbatim */}
+      {/* Welcome letter: approved wording, verbatim. Heading in its own column,
+          the letter beside it, a hairline above. */}
       <section
         data-testid="splash-welcome"
-        className="relative mx-auto max-w-7xl px-6 pt-8 sm:px-8 sm:pt-10"
+        className="relative mx-auto max-w-7xl px-6 sm:px-8"
       >
         <motion.div
           {...rise(0.1)}
-          className="max-w-[52rem] space-y-6 text-[1.15rem] sm:text-[1.3rem] leading-[1.45] tracking-[-0.01em] text-white/75"
+          className="grid gap-8 border-t border-white/[.1] pt-12 sm:pt-16 lg:grid-cols-12 lg:gap-8"
         >
-          <p className="text-[1.6rem] font-semibold text-white sm:text-[1.9rem]">
+          <p className="text-[1.6rem] font-semibold tracking-[-0.02em] text-white sm:text-[1.9rem] lg:col-span-3">
             Welcome.
           </p>
-          <p>
-            If you are here, you must have been provided a password by the head
-            of the Association of Trust Organizations. Look around, explore,
-            and think about whether or not this site has the potential to be
-            helpful to the ATO.
-          </p>
-          <p>
-            What you will find: a chatbot that answers from documents
-            contributed by people in trust-company leadership, a library of
-            those documents, a place to add your own, and tools like an
-            evolving &ldquo;consensus&rdquo; architecture based on what&rsquo;s
-            been uploaded to date. The site is designed strictly to manage
-            non-confidential material. Appropriate individuals are welcome to
-            contribute on topics about which trust companies do not compete,
-            and about which everyone is aligned in wanting to see the industry
-            get it right.
-          </p>
-          <p>
-            The platform was created as part of the residency program of a
-            non-profit group named Legal Quants (
-            <a
-              href="https://www.legalquants.com/"
-              target="_blank"
-              rel="noreferrer"
-              className="text-white underline decoration-white/40 underline-offset-4 hover:decoration-white"
-            >
-              LegalQuants.com
-            </a>
-            ) - a global community of lawyers determined to understand and
-            work with AI. Our philosophy is that whether we like it or not,
-            change is coming quickly.
-          </p>
-          <p>
-            The technology is confusing. And industry-wide practices, like the
-            decision of where a &ldquo;human in the loop&rdquo; should appear
-            in the architecture, are standards that may take root now and last
-            for years to come. It seemed to us to be important for there to be
-            an unbiased forum for those topics - of course itself run with AI.
-          </p>
-          <p>
-            Technology professionals will appreciate the open-source GitHub
-            repository and the Apache 2.0 license. Communication via Slack
-            will make their participation easy.
-          </p>
-          <p>
-            In the event the ATO wishes to accept it, this platform is a gift,
-            and we&rsquo;re happy to maintain it going forward without charge.
-            If, on the other hand, it is not a fit, we will understand.
-          </p>
-          <p>Either way, we wish the community and its leadership all our best,</p>
-          <p>Spencer E. Adler, Esq. and the Legal Quants team</p>
+          <div className="space-y-6 text-[1.15rem] leading-[1.5] tracking-[-0.005em] text-white/78 sm:text-[1.25rem] lg:col-span-8 lg:col-start-4 lg:max-w-[46rem]">
+            <p>
+              If you are here, you must have been provided a password by the
+              head of the Association of Trust Organizations. Look around,
+              explore, and think about whether or not this site has the
+              potential to be helpful to the ATO.
+            </p>
+            <p>
+              What you will find: a chatbot that answers from documents
+              contributed by people in trust-company leadership, a library of
+              those documents, a place to add your own, and tools like an
+              evolving &ldquo;consensus&rdquo; architecture based on
+              what&rsquo;s been uploaded to date. The site is designed strictly
+              to manage non-confidential material. Appropriate individuals are
+              welcome to contribute on topics about which trust companies do not
+              compete, and about which everyone is aligned in wanting to see the
+              industry get it right.
+            </p>
+            <p>
+              The platform was created as part of the residency program of a
+              non-profit group named Legal Quants (
+              <a
+                href="https://www.legalquants.com/"
+                target="_blank"
+                rel="noreferrer"
+                className="text-white underline decoration-white/40 underline-offset-4 hover:decoration-white"
+              >
+                LegalQuants.com
+              </a>
+              ) - a global community of lawyers determined to understand and
+              work with AI. Our philosophy is that whether we like it or not,
+              change is coming quickly.
+            </p>
+            <p>
+              The technology is confusing. And industry-wide practices, like the
+              decision of where a &ldquo;human in the loop&rdquo; should appear
+              in the architecture, are standards that may take root now and last
+              for years to come. It seemed to us to be important for there to be
+              an unbiased forum for those topics - of course itself run with AI.
+            </p>
+            <p>
+              Technology professionals will appreciate the open-source GitHub
+              repository and the Apache 2.0 license. Communication via Slack
+              will make their participation easy.
+            </p>
+            <p>
+              In the event the ATO wishes to accept it, this platform is a gift,
+              and we&rsquo;re happy to maintain it going forward without charge.
+              If, on the other hand, it is not a fit, we will understand.
+            </p>
+            <p>
+              Either way, we wish the community and its leadership all our best,
+            </p>
+            <p>Spencer E. Adler, Esq. and the Legal Quants team</p>
+          </div>
         </motion.div>
       </section>
 
@@ -168,7 +180,6 @@ export function SplashIntro() {
             </motion.li>
           ))}
         </ol>
-
       </section>
     </div>
   );
