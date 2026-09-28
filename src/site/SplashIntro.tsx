@@ -81,17 +81,23 @@ export function SplashIntro() {
           <p>
             If you are here, you must have been provided a password by the head
             of the Association of Trust Organizations. Look around, explore,
-            and think about whether or not this site has the potential to be a
-            helpful platform for the members of the ATO.
+            and think about whether or not this site has the potential to be
+            helpful to the ATO.
           </p>
           <p>
             What you will find: a chatbot that answers from documents
             contributed by people in trust-company leadership, a library of
-            those documents, and a place to add your own.
+            those documents, a place to add your own, and tools like an
+            evolving &ldquo;consensus&rdquo; architecture based on what&rsquo;s
+            been uploaded to date. The site is designed strictly to manage
+            non-confidential material. Appropriate individuals are welcome to
+            contribute on topics about which trust companies do not compete,
+            and about which everyone is aligned in wanting to see the industry
+            get it right.
           </p>
           <p>
-            It was created as part of the non-profit residency of a program
-            called Legal Quants (
+            The platform was created as part of the residency program of a
+            non-profit group named Legal Quants (
             <a
               href="https://www.legalquants.com/"
               target="_blank"
@@ -100,42 +106,28 @@ export function SplashIntro() {
             >
               LegalQuants.com
             </a>
-            ), which is a global non-profit community of lawyers who are
-            determined to understand and work with AI. Our philosophy is that
-            whether we like it or not, it is coming quickly.
+            ) - a global community of lawyers determined to understand and
+            work with AI. Our philosophy is that whether we like it or not,
+            change is coming quickly.
           </p>
           <p>
-            In keeping with this philosophy, this platform was built to
-            facilitate the education and decision-making process of the
-            independent trust company industry. The technology is confusing,
-            and choices like where a &ldquo;human in the loop&rdquo; should
-            appear are standards that may take root now, and last for many
-            years to come. It seemed to us to be important to provide
-            a forum for communication that was not focused on vendors vying for
-            contracts.
+            The technology is confusing. And industry-wide practices, like the
+            decision of where a &ldquo;human in the loop&rdquo; should appear
+            in the architecture, are standards that may take root now and last
+            for years to come. It seemed to us to be important for there to be
+            an unbiased forum for those topics - of course itself run with AI.
           </p>
           <p>
             Technology professionals will appreciate the open-source GitHub
-            repository and Apache 2.0 license.
+            repository and the Apache 2.0 license. Communication via Slack
+            will make their participation easy.
           </p>
           <p>
-            Industry leaders and technologists are welcome to contribute
-            insights and documents pertaining to the foundational architecture
-            about which trust companies do not compete, and about which
-            everyone is aligned in wanting to see the industry get it right.
+            In the event the ATO wishes to accept it, this platform is a gift,
+            and we&rsquo;re happy to maintain it going forward without charge.
+            If, on the other hand, it is not a fit, we will understand.
           </p>
-          <p>
-            In the event the ATO wishes to accept it, this platform is a gift
-            to the industry, and we&rsquo;re happy to maintain it going forward
-            without charge. And in the event it is not a fit, for whatever
-            reason, we will understand.
-          </p>
-          <p>
-            If other industry leaders with technology experience would like
-            to participate on Slack and GitHub in improving this platform over
-            time, we&rsquo;ll be delighted to have the company.
-          </p>
-          <p>Either way, we wish you all our best,</p>
+          <p>Either way, we wish the community and its leadership all our best,</p>
           <p>Spencer E. Adler, Esq. and the Legal Quants team</p>
         </motion.div>
       </section>
