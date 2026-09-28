@@ -35,10 +35,25 @@ export function SplashIntro() {
       data-testid="splash-intro"
       className="gate-dark bg-ink pb-24 text-[#f5f6f7] antialiased selection:bg-sky/30 sm:pb-32"
     >
+      {/* Site name and tagline: approved wording, verbatim */}
+      <section
+        data-testid="splash-name"
+        className="relative mx-auto max-w-7xl px-6 pt-14 sm:px-8 sm:pt-20"
+      >
+        <motion.div {...rise(0)} className="max-w-[52rem]">
+          <p className="text-[3rem] sm:text-[4rem] lg:text-[4.6rem] font-semibold leading-[1] tracking-[-0.04em] text-white">
+            TrustOrgs.AI
+          </p>
+          <p className="mt-5 text-[1.35rem] sm:text-[1.6rem] leading-[1.35] tracking-[-0.01em] text-white/80">
+            The AI platform of the trust company industry
+          </p>
+        </motion.div>
+      </section>
+
       {/* Welcome letter: approved wording, verbatim */}
       <section
         data-testid="splash-welcome"
-        className="relative mx-auto max-w-7xl px-6 pt-12 sm:px-8 sm:pt-16"
+        className="relative mx-auto max-w-7xl px-6 pt-12 sm:px-8 sm:pt-14"
       >
         <motion.div
           {...rise(0.1)}
