@@ -153,9 +153,9 @@ const WHY_NOW: { n: string; title: string; body: string; source: string }[] = [
     n: "02",
     title:
       "Federal banking regulators do not treat outsourcing as a transfer of responsibility.",
-    body: "The 2023 Interagency Guidance on Third-Party Relationships states that a banking organization’s use of third parties “does not diminish its responsibility to meet these requirements to the same extent as if its activities were performed by the banking organization in-house.” The guidance is addressed to banking organizations supervised by the OCC, Federal Reserve and FDIC. Its application to a state-chartered, non-depository trust company depends on that company’s charter and regulator. On September 11, 2026 the OCC, Federal Reserve, FDIC and National Credit Union Administration issued proposed guidance “revising and replacing existing guidance on third-party risk management.” Comments are due 60 days after publication in the Federal Register. The proposal states that it “will not set forth enforceable standards or prescriptive requirements” and that non-compliance “will not result in supervisory action.” The 2023 guidance remains in effect until the proposal is finalized.",
+    body: "The 2023 Interagency Guidance on Third-Party Relationships states that a banking organization’s use of third parties “does not diminish its responsibility to meet these requirements to the same extent as if its activities were performed by the banking organization in-house.” The guidance is addressed to banking organizations supervised by the OCC, Federal Reserve and FDIC. Its application to a state-chartered, non-depository trust company depends on that company’s charter and regulator. On September 11, 2026 the OCC, Federal Reserve, FDIC and National Credit Union Administration issued proposed guidance “revising and replacing existing guidance on third-party risk management.” The proposal was published in the Federal Register on September 15, 2026. Comments must be received on or before November 16, 2026. The proposal states that it “will not set forth enforceable standards or prescriptive requirements” and that non-compliance “will not result in supervisory action.” The 2023 guidance remains in effect until the proposal is finalized.",
     source:
-      "OCC Bulletin 2023-17 · Fed SR 23-4 · 88 Fed. Reg. 37920 (published June 9, 2023; final June 6, 2023) · Proposed revision: OCC Bulletin 2026-46, September 11, 2026.",
+      "OCC Bulletin 2023-17 · Fed SR 23-4 · 88 Fed. Reg. 37920 (published June 9, 2023; final June 6, 2023) · Proposed revision: OCC Bulletin 2026-46, September 11, 2026 · 91 Fed. Reg. 58536 (September 15, 2026).",
   },
   {
     n: "03",
@@ -184,7 +184,7 @@ const WHY_NOW: { n: string; title: string; body: string; source: string }[] = [
 ];
 
 const WHY_NOW_CLOSE =
-  "This section describes statutes and regulatory guidance that were public as of September 21, 2026. It is not legal advice, does not create an attorney-client relationship, and may not reflect later developments. None of the documents described requires a trust company to use AI. Trust companies should consult their own counsel regarding their charter, regulator, and states of operation.";
+  "This section describes statutes and regulatory guidance that were public as of September 28, 2026. It is not legal advice, does not create an attorney-client relationship, and may not reflect later developments. None of the documents described requires a trust company to use AI. Trust companies should consult their own counsel regarding their charter, regulator, and states of operation.";
 
 // Same scroll-reveal as the splash page.
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -510,7 +510,7 @@ export function HomePage() {
             </h2>
           </div>
           <p className="text-[17px] sm:text-lg leading-relaxed text-muted-foreground">
-            Statutes and regulatory guidance public as of September 21, 2026.
+            Statutes and regulatory guidance public as of September 28, 2026.
             <br />
             <span data-testid="why-now-scan-line">
               Updated weekly from an automated scan of regulator, legislative

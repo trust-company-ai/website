@@ -13,7 +13,7 @@ runTest("Website pages and library", async helper => {
     "route work by consequence, not by capability.",
     "Named exception",
     "Apache-2.0, no permission required.",
-    "Statutes and regulatory guidance public as of September 21, 2026.",
+    "Statutes and regulatory guidance public as of September 28, 2026.",
     "Please submit anonymized documents or documents you are comfortable sharing.",
     "in live, Board-governed use",
   ])
