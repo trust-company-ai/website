@@ -2,8 +2,8 @@ import { motion } from "framer-motion";
 import { Slab3D } from "@/site/Slab3D";
 
 /**
- * Dark introduction block at the top of the home page: headline, intro,
- * the three layers. Shown only after the password. All copy is approved
+ * Dark introduction block at the top of the home page: welcome letter,
+ * headline, the three layers. Shown only after the password. All copy is approved
  * wording — do not edit or add text here without word-for-word approval.
  */
 export function SplashIntro() {
@@ -35,6 +35,81 @@ export function SplashIntro() {
       data-testid="splash-intro"
       className="gate-dark bg-ink pb-24 text-[#f5f6f7] antialiased selection:bg-sky/30 sm:pb-32"
     >
+      {/* Welcome letter: approved wording, verbatim */}
+      <section
+        data-testid="splash-welcome"
+        className="relative mx-auto max-w-7xl px-6 pt-12 sm:px-8 sm:pt-16"
+      >
+        <motion.div
+          {...rise(0.1)}
+          className="max-w-[52rem] space-y-6 text-[1.15rem] sm:text-[1.3rem] leading-[1.45] tracking-[-0.01em] text-white/75"
+        >
+          <p className="text-[1.6rem] font-semibold text-white sm:text-[1.9rem]">
+            Welcome.
+          </p>
+          <p>
+            If you are here, you must have been provided a password by the head
+            of the Association of Trusts Organizations. Look around, explore,
+            and think about whether or not this site has the potential to be a
+            helpful platform for the members of the ATO.
+          </p>
+          <p>
+            It was created as part of the non-profit residency of a program
+            called Legal Quants (
+            <a
+              href="https://www.legalquants.com/"
+              target="_blank"
+              rel="noreferrer"
+              className="text-white underline decoration-white/40 underline-offset-4 hover:decoration-white"
+            >
+              LegalQuants.com
+            </a>
+            ), which is a global non-profit community of lawyers who are
+            determined to understand and work with AI. Our philosophy is that
+            whether we like it, or not, it is coming quickly.
+          </p>
+          <p>
+            In keeping with this philosophy, this platform was built to
+            facilitate the education and decision making process of the
+            independent trust company industry. The technology is confusing,
+            and decisions like where a &ldquo;human in the loop&rdquo; should
+            appear are decisions and standards that may take root now, and last
+            for many years to come. It seemed to us to be important to provide
+            a forum for communication that was not focused on vendors vying for
+            contracts.
+          </p>
+          <p>
+            Technology professionals will appreciate the open source GitHub
+            repository and Apache 2.0 license. The rest of us will appreciate
+            the automatic AI updates of a plain English companion website.
+          </p>
+          <p>
+            Industry leaders and technologists are welcome to contribute
+            insights and documents pertaining to the foundational architecture
+            about which trust companies do not compete, and about which
+            everyone is aligned in wanting to see the industry get it right.
+          </p>
+          <p>
+            It almost goes without saying that the industry giants, like JP
+            Morgan, are already well advanced in setting standards at their
+            level of the industry.
+          </p>
+          <p>
+            In the event the ATO wishes to accept it, this platform is a gift
+            to the industry, and we&rsquo;re happy to maintain it going forward
+            without charge. And in the event it is not a fit, for whatever
+            reason, we will understand.
+          </p>
+          <p>
+            And if other industry leaders with technology experience would like
+            to participate on Slack and GitHub in improving this platform over
+            time, we&rsquo;ll be delighted to have the company.
+          </p>
+          <p>Either way, we wish you all our best,</p>
+          <p>Spencer E. Adler, Esq. and the Legal Quants team</p>
+        </motion.div>
+      </section>
+
       {/* Hero: headline left, floating slab right */}
       <section className="relative overflow-hidden">
         <div className="tcai-grid pointer-events-none absolute inset-0" />
@@ -59,32 +134,6 @@ export function SplashIntro() {
             <Slab3D className="w-[16rem] sm:w-[20rem] lg:w-[24rem] xl:w-[26rem] lg:mr-2" />
           </motion.div>
         </div>
-        <motion.div
-          {...rise(0.25)}
-          data-testid="splash-intro-top"
-          className="relative mx-auto max-w-7xl px-6 pb-10 sm:px-8 lg:pb-12"
-        >
-          <div className="max-w-[52rem] space-y-6 text-[1.15rem] sm:text-[1.3rem] leading-[1.45] tracking-[-0.01em] text-white/75">
-            <p>
-              TrustCompanyAI.org is a non-profit project born in a residency at{" "}
-              <a
-                href="https://www.legalquants.com/"
-                target="_blank"
-                rel="noreferrer"
-                className="text-white underline decoration-white/40 underline-offset-4 hover:decoration-white"
-              >
-                LegalQuants.com
-              </a>
-              , the global community of AI-enabled lawyers.
-            </p>
-            <p>
-              Its purpose is to support the trust company industry as it sets
-              standards and practices during a time of foundational change
-              prompted by AI. Its focus is the foundation of the industry, where
-              no one competes and everyone has an incentive to get it right.
-            </p>
-          </div>
-        </motion.div>
       </section>
 
       {/* The three layers */}
@@ -124,26 +173,6 @@ export function SplashIntro() {
           ))}
         </ol>
 
-        <motion.div
-          {...reveal()}
-          data-testid="splash-intro-below"
-          className="mt-20 max-w-[52rem] space-y-6 text-[1.15rem] sm:text-[1.3rem] leading-[1.45] tracking-[-0.01em] text-white/75"
-        >
-          <p>
-            An example of a foundational question: where does the industry keep
-            a &ldquo;human in the loop&rdquo;?
-          </p>
-          <p>
-            This platform is designed for chief technology officers making
-            design decisions and regulators making policy decisions, who need a
-            shared place to speed up understanding and decision-making.
-          </p>
-          <p>
-            Qualified professionals upload documents, ask the growing knowledge
-            base, and follow the consensus diagrams as they update. Schematics
-            and open source code are on GitHub.
-          </p>
-        </motion.div>
       </section>
     </div>
   );
