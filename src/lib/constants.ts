@@ -1,1 +1,1 @@
-export const APP_NAME = "Trust Company AI";
+export const APP_NAME = "TrustOrgs.AI";

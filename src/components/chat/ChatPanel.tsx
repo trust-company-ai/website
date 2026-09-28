@@ -316,7 +316,7 @@ export function ChatPanel({
     return (
       <div data-testid="chat-panel" className="contents">
         <p className="font-mono text-[12.5px] tracking-[0.2em] text-navy tabular-nums">
-          02
+          01
         </p>
         <label
           htmlFor="hero-chat-input"

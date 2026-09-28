@@ -69,6 +69,11 @@ export function SplashIntro() {
             helpful platform for the members of the ATO.
           </p>
           <p>
+            What you will find: a chatbot that answers from documents
+            contributed by people in trust-company leadership, a library of
+            those documents, and a place to add your own.
+          </p>
+          <p>
             It was created as part of the non-profit residency of a program
             called Legal Quants (
             <a
@@ -87,9 +92,9 @@ export function SplashIntro() {
             In keeping with this philosophy, this platform was built to
             facilitate the education and decision-making process of the
             independent trust company industry. The technology is confusing,
-            and decisions like where a &ldquo;human in the loop&rdquo; should
-            appear are decisions and standards that may take root now, and last
-            for many years to come. It seemed to us to be important to provide
+            and choices like where a &ldquo;human in the loop&rdquo; should
+            appear are standards that may take root now, and last for many
+            years to come. It seemed to us to be important to provide
             a forum for communication that was not focused on vendors vying for
             contracts.
           </p>
@@ -102,11 +107,6 @@ export function SplashIntro() {
             insights and documents pertaining to the foundational architecture
             about which trust companies do not compete, and about which
             everyone is aligned in wanting to see the industry get it right.
-          </p>
-          <p>
-            It almost goes without saying that the industry giants, like JP
-            Morgan, are already well advanced in setting standards at their
-            level of the industry.
           </p>
           <p>
             In the event the ATO wishes to accept it, this platform is a gift

@@ -229,7 +229,7 @@ function HeroDropZone() {
   return (
     <div data-testid="upload-panel" className="contents">
       <p className="font-mono text-[12.5px] tracking-[0.2em] text-navy tabular-nums">
-        01
+        02
       </p>
       <label
         htmlFor="hero-file-input"
@@ -327,7 +327,7 @@ export function HomePage() {
       {/* Introduction (formerly the page before the password) */}
       <SplashIntro />
 
-      {/* Hero: audience line, then upload (left) and chat (right) side by side. */}
+      {/* Hero: audience line, then chat (left) and upload (right) side by side. */}
       <section className="relative overflow-hidden text-ink" data-testid="hero">
         <div className="tcai-grid pointer-events-none absolute inset-0" />
         <div className="pointer-events-none absolute -right-40 top-10 size-[42rem] rounded-full bg-[#1d3f8a]/8 blur-[140px]" />
@@ -342,14 +342,14 @@ export function HomePage() {
               For executives, regulators, compliance experts, and technologists
             </span>
           </motion.p>
-          {/* Upload left, chat right — equal size */}
+          {/* Chat left, upload right — equal size */}
           <div className="mt-14 sm:mt-16 grid gap-12 lg:grid-cols-2 lg:grid-rows-[auto_auto_1fr_auto] lg:gap-x-16 lg:gap-y-0">
             <motion.div
               {...rise(0.2)}
               className="flex flex-col lg:grid lg:row-span-4 lg:grid-rows-subgrid"
             >
-              <div className="contents" data-testid="upload-card">
-                <HeroDropZone />
+              <div className="contents" data-testid="chat-card">
+                <ChatPanel hero />
               </div>
             </motion.div>
 
@@ -357,8 +357,8 @@ export function HomePage() {
               {...rise(0.25)}
               className="flex flex-col lg:grid lg:row-span-4 lg:grid-rows-subgrid"
             >
-              <div className="contents" data-testid="chat-card">
-                <ChatPanel hero />
+              <div className="contents" data-testid="upload-card">
+                <HeroDropZone />
               </div>
             </motion.div>
           </div>

@@ -73,7 +73,7 @@ export function SiteFooter() {
             </span>
             {APP_NAME}
           </div>
-          <p className="font-mono text-[12.5px] tracking-[0.2em] text-ink/50">trustcompanyai.org</p>
+          <p className="font-mono text-[12.5px] tracking-[0.2em] text-ink/50">trustorgs.ai</p>
         </div>
         <nav className="flex flex-wrap gap-x-10 sm:gap-x-14 gap-y-2 text-[15px] text-ink/70">
           {[...NAV, { to: "/submit", label: "Contribute" }].map(n => (
