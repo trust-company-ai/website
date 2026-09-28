@@ -327,7 +327,7 @@ export function HomePage() {
       {/* Introduction (formerly the page before the password) */}
       <SplashIntro />
 
-      {/* Hero: headline, then upload (left) and chat (right) side by side. */}
+      {/* Hero: audience line, then upload (left) and chat (right) side by side. */}
       <section className="relative overflow-hidden text-ink" data-testid="hero">
         <div className="tcai-grid pointer-events-none absolute inset-0" />
         <div className="pointer-events-none absolute -right-40 top-10 size-[42rem] rounded-full bg-[#1d3f8a]/8 blur-[140px]" />
@@ -342,22 +342,6 @@ export function HomePage() {
               For executives, regulators, compliance experts, and technologists
             </span>
           </motion.p>
-          <motion.div {...rise(0.1)} className="mt-8 sm:mt-10 max-w-[52rem]">
-            <h1
-              className="text-[2.75rem] sm:text-[3.75rem] lg:text-[4.25rem] font-semibold leading-[1.02] tracking-[-0.04em]"
-              data-testid="home-h1"
-            >
-              How independent trust companies share lessons learned about AI
-            </h1>
-            <p
-              data-testid="no-compete-line"
-              className="mt-7 sm:mt-8 max-w-[36rem] text-lg sm:text-xl leading-[1.5] text-ink/70"
-            >
-              Open-source infrastructure and governance knowledge on which no
-              one competes.
-            </p>
-          </motion.div>
-
           {/* Upload left, chat right — equal size */}
           <div className="mt-14 sm:mt-16 grid gap-12 lg:grid-cols-2 lg:grid-rows-[auto_auto_1fr_auto] lg:gap-x-16 lg:gap-y-0">
             <motion.div

@@ -5,10 +5,7 @@ runTest("Website pages and library", async helper => {
   const { page } = helper;
 
   await helper.goto("/");
-  await page.waitForSelector('[data-testid="home-h1"]', { timeout: 20000 });
-  const h1 = await page.locator('[data-testid="home-h1"]').innerText();
-  if (!/How independent trust companies share lessons learned about AI/i.test(h1))
-    throw new Error(`Unexpected home headline: ${h1}`);
+  await page.waitForSelector('[data-testid="audience-line"]', { timeout: 20000 });
   const body = await page.locator("body").innerText();
   // Approved copy present …
   for (const must of [

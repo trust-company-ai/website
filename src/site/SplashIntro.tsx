@@ -2,8 +2,8 @@ import { motion } from "framer-motion";
 import { Slab3D } from "@/site/Slab3D";
 
 /**
- * Dark introduction block at the top of the home page: welcome letter,
- * headline, the three layers. Shown only after the password. All copy is approved
+ * Dark introduction block at the top of the home page: site name, welcome letter,
+ * the three layers. Shown only after the password. All copy is approved
  * wording — do not edit or add text here without word-for-word approval.
  */
 export function SplashIntro() {
@@ -45,7 +45,7 @@ export function SplashIntro() {
             TrustOrgs.AI
           </p>
           <p className="mt-5 text-[1.35rem] sm:text-[1.6rem] leading-[1.35] tracking-[-0.01em] text-white/80">
-            The AI platform of the trust company industry
+            An AI platform for the trust company industry
           </p>
         </motion.div>
       </section>
@@ -64,7 +64,7 @@ export function SplashIntro() {
           </p>
           <p>
             If you are here, you must have been provided a password by the head
-            of the Association of Trusts Organizations. Look around, explore,
+            of the Association of Trust Organizations. Look around, explore,
             and think about whether or not this site has the potential to be a
             helpful platform for the members of the ATO.
           </p>
@@ -81,11 +81,11 @@ export function SplashIntro() {
             </a>
             ), which is a global non-profit community of lawyers who are
             determined to understand and work with AI. Our philosophy is that
-            whether we like it, or not, it is coming quickly.
+            whether we like it or not, it is coming quickly.
           </p>
           <p>
             In keeping with this philosophy, this platform was built to
-            facilitate the education and decision making process of the
+            facilitate the education and decision-making process of the
             independent trust company industry. The technology is confusing,
             and decisions like where a &ldquo;human in the loop&rdquo; should
             appear are decisions and standards that may take root now, and last
@@ -94,9 +94,8 @@ export function SplashIntro() {
             contracts.
           </p>
           <p>
-            Technology professionals will appreciate the open source GitHub
-            repository and Apache 2.0 license. The rest of us will appreciate
-            the automatic AI updates of a plain English companion website.
+            Technology professionals will appreciate the open-source GitHub
+            repository and Apache 2.0 license.
           </p>
           <p>
             Industry leaders and technologists are welcome to contribute
@@ -125,26 +124,15 @@ export function SplashIntro() {
         </motion.div>
       </section>
 
-      {/* Hero: headline left, floating slab right */}
+      {/* Floating slab above the three layers */}
       <section className="relative overflow-hidden">
         <div className="tcai-grid pointer-events-none absolute inset-0" />
         <div className="pointer-events-none absolute -right-40 top-10 size-[42rem] rounded-full bg-[#1d3f8a]/12 blur-[140px]" />
-        <div className="relative mx-auto grid max-w-7xl items-center gap-8 px-6 pt-10 pb-6 sm:px-8 sm:pt-12 lg:grid-cols-12 lg:gap-6 lg:py-10">
-          <motion.p
-            {...rise(0.1)}
-            className="lg:col-span-7 text-[2.6rem] sm:text-[3.5rem] lg:text-[4rem] xl:text-[4.4rem] font-semibold leading-[1.02] tracking-[-0.04em]"
-          >
-            AI is coming to independent trust companies. Choice of{" "}
-            <span className="inline-block whitespace-nowrap border-b-[4px] border-sky/80 leading-[0.9]">
-              standards
-            </span>{" "}
-            will affect the whole industry.
-          </motion.p>
+        <div className="relative mx-auto flex max-w-7xl justify-center px-6 pt-10 pb-6 sm:px-8 sm:pt-12 lg:justify-end lg:py-10">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, ease }}
-            className="lg:col-span-5 flex justify-center lg:justify-end"
           >
             <Slab3D className="w-[16rem] sm:w-[20rem] lg:w-[24rem] xl:w-[26rem] lg:mr-2" />
           </motion.div>
