@@ -3,7 +3,7 @@ import { useMutation } from "convex/react";
 import { api } from "../../convex/_generated/api";
 import { getVisitorId } from "@/lib/visitor";
 import { Link, Outlet, useLocation } from "react-router";
-import { APP_NAME } from "@/lib/constants";
+import { APP_NAME, SITE_DOMAIN } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import { Mark } from "./Mark";
 
@@ -88,7 +88,7 @@ export function SiteFooter() {
             </span>
             {APP_NAME}
           </div>
-          <p className="font-mono text-[12.5px] tracking-[0.2em] text-ink/50">trustorgs.ai</p>
+          <p className="font-mono text-[12.5px] tracking-[0.2em] text-ink/50">{SITE_DOMAIN}</p>
         </div>
         <nav className="flex flex-wrap gap-x-10 sm:gap-x-14 gap-y-2 text-[15px] text-ink/70">
           {[...NAV, { to: "/submit", label: "Contribute" }].map(n => (

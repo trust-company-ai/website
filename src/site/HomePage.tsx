@@ -228,12 +228,9 @@ function HeroDropZone() {
 
   return (
     <div data-testid="upload-panel" className="contents">
-      <p className="font-mono text-[12.5px] tracking-[0.2em] text-navy tabular-nums">
-        02
-      </p>
       <label
         htmlFor="hero-file-input"
-        className="mt-4 block cursor-pointer text-[1.5rem] sm:text-[1.7rem] font-semibold leading-[1.15] tracking-[-0.02em]"
+        className="block cursor-pointer text-[1.5rem] sm:text-[1.7rem] font-semibold leading-[1.15] tracking-[-0.02em]"
       >
         Upload non-confidential documents here
       </label>
@@ -391,9 +388,6 @@ export function HomePage() {
       >
         <div className="grid gap-6 lg:grid-cols-2 lg:gap-20 items-end">
           <div>
-            <p className="mb-4 font-mono text-[12.5px] tracking-[0.2em] text-navy tabular-nums">
-              03
-            </p>
             <h2 className="text-[2rem] sm:text-[2.5rem] font-medium leading-[1.08] tracking-[-0.025em]">
               The community reference pattern
             </h2>

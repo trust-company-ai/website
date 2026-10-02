@@ -2,7 +2,53 @@
   "rewrites": [
     {
       "source": "/((?!assets/|__viktor_meta\\.json).*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "(www\\.)?trustcompanyai\\.org"
+        }
+      ],
+      "destination": "/tcai.html"
+    },
+    {
+      "source": "/((?!assets/|__viktor_meta\\.json).*)",
+      "has": [
+        {
+          "type": "query",
+          "key": "site",
+          "value": "trustcompanyai"
+        }
+      ],
+      "destination": "/tcai.html"
+    },
+    {
+      "source": "/((?!assets/|__viktor_meta\\.json).*)",
       "destination": "/index.html"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "(www\\.)?trustcompanyai\\.org"
+        }
+      ],
+      "destination": "/home",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "query",
+          "key": "site",
+          "value": "trustcompanyai"
+        }
+      ],
+      "destination": "/home",
+      "permanent": false
     }
   ]
 }

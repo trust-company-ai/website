@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { APP_NAME, SITE } from "@/lib/constants";
 import { Mark } from "@/site/Mark";
 import { Slab3D } from "@/site/Slab3D";
 
@@ -52,7 +53,7 @@ export function SplashIntro() {
                 <Mark className="size-[2.1rem] !text-white sm:size-[2.4rem]" />
               </span>
               <p className="text-[1.9rem] font-semibold leading-none tracking-[-0.03em] text-white sm:text-[2.3rem]">
-                TrustOrgs.AI
+                {APP_NAME}
               </p>
             </div>
             <p className="mt-10 max-w-[13ch] text-[2.75rem] font-semibold leading-[1.04] tracking-[-0.04em] text-white sm:text-[3.6rem] lg:text-[4.1rem] xl:text-[4.4rem]">
@@ -87,12 +88,14 @@ export function SplashIntro() {
             Welcome.
           </p>
           <div className="space-y-6 text-[1.15rem] leading-[1.5] tracking-[-0.005em] text-white/78 sm:text-[1.25rem] lg:col-span-8 lg:col-start-4 lg:max-w-[46rem]">
-            <p>
-              If you are here, you must have been provided a password by the
-              head of the Association of Trust Organizations. Look around,
-              explore, and think about whether or not this site has the
-              potential to be helpful to the ATO.
-            </p>
+            {SITE === "trustorgs" && (
+              <p>
+                If you are here, you must have been provided a password by the
+                head of the Association of Trust Organizations. Look around,
+                explore, and think about whether or not this site has the
+                potential to be helpful to the ATO.
+              </p>
+            )}
             <p>
               What you will find: a chatbot that answers from documents
               contributed by people in trust-company leadership, a library of
@@ -131,13 +134,17 @@ export function SplashIntro() {
               repository and the Apache 2.0 license. Communication via Slack
               will make their participation easy.
             </p>
+            {SITE === "trustorgs" && (
+              <p>
+                In the event the ATO wishes to accept it, this platform is a gift,
+                and we&rsquo;re happy to maintain it going forward without charge.
+                If, on the other hand, it is not a fit, we will understand.
+              </p>
+            )}
             <p>
-              In the event the ATO wishes to accept it, this platform is a gift,
-              and we&rsquo;re happy to maintain it going forward without charge.
-              If, on the other hand, it is not a fit, we will understand.
-            </p>
-            <p>
-              Either way, we wish the community and its leadership all our best,
+              {SITE === "trustorgs"
+                ? "Either way, we wish the community and its leadership all our best,"
+                : "We wish the community and its leadership all our best,"}
             </p>
             <p>Spencer E. Adler, Esq. and the Legal Quants team</p>
           </div>

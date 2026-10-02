@@ -315,12 +315,9 @@ export function ChatPanel({
   if (hero && msgs.length === 0) {
     return (
       <div data-testid="chat-panel" className="contents">
-        <p className="font-mono text-[12.5px] tracking-[0.2em] text-navy tabular-nums">
-          01
-        </p>
         <label
           htmlFor="hero-chat-input"
-          className="mt-4 block text-[1.5rem] sm:text-[1.7rem] font-semibold leading-[1.15] tracking-[-0.02em]"
+          className="block text-[1.5rem] sm:text-[1.7rem] font-semibold leading-[1.15] tracking-[-0.02em]"
         >
           Ask the knowledge base
         </label>

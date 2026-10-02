@@ -2,7 +2,7 @@ import { v } from "convex/values";
 import { internal } from "./_generated/api";
 import { action, query } from "./_generated/server";
 import { _sha256Hex } from "./reviewKey";
-import { passwordHash } from "./sitePassword";
+import { passwordHash, siteArg } from "./sitePassword";
 
 declare const process: { env: Record<string, string | undefined> };
 
@@ -29,13 +29,14 @@ export function gateOk(token: string | undefined): boolean {
  * not in the code: its hash is stored in the settings table (see sitePassword.ts).
  */
 export const unlock = action({
-  args: { password: v.string(), email: v.optional(v.string()) },
+  args: { password: v.string(), email: v.optional(v.string()), site: siteArg },
   returns: v.union(v.string(), v.null()),
-  handler: async (ctx, { password, email }) => {
+  handler: async (ctx, { password, email, site }) => {
     void email;
     const p = password.trim().slice(0, 200);
     if (!p) return null;
-    const stored = await ctx.runQuery(internal.sitePassword.getHash, {});
+    // Each address has its own password; a password is refused at the other door.
+    const stored = await ctx.runQuery(internal.sitePassword.getHash, { site });
     if (!stored || passwordHash(p) !== stored) return null;
     await ctx.runMutation(internal.signins.record, { name: "site password" });
     return gateToken();

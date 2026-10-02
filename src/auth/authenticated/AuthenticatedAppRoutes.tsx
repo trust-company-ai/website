@@ -26,6 +26,7 @@ export function AuthenticatedRoutes() {
     <Routes>
       <Route element={<SiteShell />}>
         <Route path="/" element={<HomePage />} />
+        <Route path="/home" element={<HomePage />} />
         <Route path="/library" element={<LibraryPage />} />
         <Route path="/ask" element={<AskPage />} />
         <Route path="/read/*" element={<ReadPage />} />

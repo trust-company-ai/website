@@ -1,4 +1,5 @@
 import { useAction, useQuery } from "convex/react";
+import { SITE } from "@/lib/constants";
 import {
   type FormEvent,
   type ReactNode,
@@ -42,7 +43,7 @@ function GateScreen({ onUnlocked }: { onUnlocked: (t: string) => void }) {
     setBusy(true);
     setWrong(false);
     try {
-      const t = await unlock({ password });
+      const t = await unlock({ password, site: SITE });
       if (t) {
         setGateUser("");
         onUnlocked(t);
