@@ -84,6 +84,19 @@ const schema = defineSchema({
     status: v.string(), // new | delivered
   }).index("by_status", ["status"]),
   // Site settings, e.g. the hash of the site password (never the password itself).
+  // Wrong front-door passwords per visitor (IP and browser). 10 wrong = locked out.
+  gateFails: defineTable({
+    client: v.string(),
+    fails: v.number(),
+    lastAt: v.number(),
+    site: v.optional(v.string()),
+    ip: v.optional(v.string()),
+    userAgent: v.optional(v.string()),
+    lockedAt: v.optional(v.number()),
+    notified: v.optional(v.boolean()),
+  })
+    .index("by_client", ["client"])
+    .index("by_notified", ["notified"]),
   settings: defineTable({
     key: v.string(),
     value: v.string(),

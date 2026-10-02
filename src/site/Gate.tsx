@@ -1,4 +1,4 @@
-import { useAction, useQuery } from "convex/react";
+import { useQuery } from "convex/react";
 import { SITE } from "@/lib/constants";
 import {
   type FormEvent,
@@ -9,6 +9,33 @@ import {
 } from "react";
 import { getGateToken, setGateToken, setGateUser } from "@/lib/gate";
 import { api } from "../../convex/_generated/api";
+
+
+/** The password check runs on the server's /gate/unlock route (it counts wrong tries). */
+const GATE_URL = `${String(import.meta.env.VITE_CONVEX_URL ?? "").replace(/\.convex\.cloud\/?$/, ".convex.site")}/gate/unlock`;
+
+function deviceId(): string {
+  try {
+    let id = localStorage.getItem("tcai-device");
+    if (!id) {
+      id = crypto.randomUUID();
+      localStorage.setItem("tcai-device", id);
+    }
+    return id;
+  } catch {
+    return "";
+  }
+}
+
+async function tryGate(password: string): Promise<{ token?: string; wrong?: boolean; locked?: boolean }> {
+  const res = await fetch(GATE_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ password, site: SITE, device: deviceId() }),
+  });
+  if (!res.ok) return { wrong: true };
+  return res.json();
+}
 
 /** Whole-site password gate. Nothing renders until the password is entered; asked on every visit. */
 export function Gate({ children }: { children: ReactNode }) {
@@ -28,10 +55,10 @@ export function Gate({ children }: { children: ReactNode }) {
 
 /** The front door: a white page with one password box and nothing else. */
 function GateScreen({ onUnlocked }: { onUnlocked: (t: string) => void }) {
-  const unlock = useAction(api.gate.unlock);
   const [password, setPassword] = useState("");
   const [busy, setBusy] = useState(false);
   const [wrong, setWrong] = useState(false);
+  const [locked, setLocked] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   useEffect(() => {
     inputRef.current?.focus();
@@ -39,15 +66,16 @@ function GateScreen({ onUnlocked }: { onUnlocked: (t: string) => void }) {
 
   async function submit(e: FormEvent) {
     e.preventDefault();
-    if (!password.trim() || busy) return;
+    if (!password.trim() || busy || locked) return;
     setBusy(true);
     setWrong(false);
     try {
-      const t = await unlock({ password, site: SITE });
-      if (t) {
+      const r = await tryGate(password);
+      if (r.token) {
         setGateUser("");
-        onUnlocked(t);
-      } else setWrong(true);
+        onUnlocked(r.token);
+      } else if (r.locked) setLocked(true);
+      else setWrong(true);
     } catch {
       setWrong(true);
     } finally {
@@ -78,6 +106,7 @@ function GateScreen({ onUnlocked }: { onUnlocked: (t: string) => void }) {
             type="password"
             autoComplete="current-password"
             ref={inputRef}
+            disabled={locked}
             value={password}
             onChange={e => {
               setPassword(e.target.value);
@@ -91,7 +120,7 @@ function GateScreen({ onUnlocked }: { onUnlocked: (t: string) => void }) {
           <button
             type="submit"
             data-testid="gate-submit"
-            disabled={busy || !password.trim()}
+            disabled={busy || locked || !password.trim()}
             className="inline-flex h-14 shrink-0 items-center justify-center rounded-full bg-navy px-8 text-lg font-medium text-white transition-opacity duration-300 hover:opacity-90 disabled:opacity-40"
           >
             Enter
@@ -101,7 +130,11 @@ function GateScreen({ onUnlocked }: { onUnlocked: (t: string) => void }) {
           data-testid="gate-error"
           className="mt-3 min-h-6 text-center text-sm text-red-600 sm:text-left"
         >
-          {wrong ? "That password is not right." : ""}
+          {locked
+            ? "Too many wrong attempts. Access from this device is blocked."
+            : wrong
+              ? "That password is not right."
+              : ""}
         </p>
       </form>
     </div>
