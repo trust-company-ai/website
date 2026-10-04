@@ -28,6 +28,28 @@
   ],
   "redirects": [
     {
+      "source": "/:path(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "(www\\.)?trustcompanyai\\.org"
+        }
+      ],
+      "destination": "https://www.trustcompany.org/:path",
+      "permanent": true
+    },
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "(www\\.)?trustorgs\\.ai"
+        }
+      ],
+      "destination": "https://www.trustcompany.org/",
+      "permanent": true
+    },
+    {
       "source": "/",
       "has": [
         {
