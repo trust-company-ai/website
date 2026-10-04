@@ -5,7 +5,7 @@
       "has": [
         {
           "type": "host",
-          "value": "(www\\.)?trustcompanyai\\.org"
+          "value": "(www\\.)?trustcompany(ai)?\\.org"
         }
       ],
       "destination": "/tcai.html"
@@ -32,7 +32,7 @@
       "has": [
         {
           "type": "host",
-          "value": "(www\\.)?trustcompanyai\\.org"
+          "value": "(www\\.)?trustcompany(ai)?\\.org"
         }
       ],
       "destination": "/home",

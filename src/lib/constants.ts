@@ -21,7 +21,8 @@ function detectSite(): SiteKey {
   } catch {
     /* ignore */
   }
-  return window.location.hostname.toLowerCase().includes("trustcompanyai") ? "trustcompanyai" : "trustorgs";
+  // trustcompany.org (the association) and trustcompanyai.org both get the association site.
+  return window.location.hostname.toLowerCase().includes("trustcompany") ? "trustcompanyai" : "trustorgs";
 }
 
 export const SITE: SiteKey = detectSite();
@@ -29,4 +30,9 @@ export const SITE: SiteKey = detectSite();
 export const APP_NAME = SITE === "trustcompanyai" ? "TrustCompanyAI.org" : "TrustOrgs.AI";
 
 /** Short address shown in the footer. */
-export const SITE_DOMAIN = SITE === "trustcompanyai" ? "trustcompanyai.org" : "trustorgs.ai";
+export const SITE_DOMAIN =
+  SITE === "trustcompanyai"
+    ? typeof window !== "undefined" && /(^|\.)trustcompany\.org$/i.test(window.location.hostname)
+      ? "trustcompany.org"
+      : "trustcompanyai.org"
+    : "trustorgs.ai";

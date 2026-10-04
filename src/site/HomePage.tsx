@@ -3,7 +3,7 @@ import { Loader2, Upload } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { ChatPanel } from "@/components/chat/ChatPanel";
-import { APP_NAME } from "@/lib/constants";
+import { APP_NAME, SITE } from "@/lib/constants";
 import { ACCEPTED_EXT, readUpload } from "@/lib/readUpload";
 import { cn } from "@/lib/utils";
 import { LayersDiagram, TiersDiagram } from "./ReferenceDiagram";
@@ -336,7 +336,9 @@ export function HomePage() {
           >
             <span className="h-px w-8 shrink-0 bg-navy/60" aria-hidden="true" />
             <span>
-              For executives, regulators, compliance experts, and technologists
+              {SITE === "trustcompanyai"
+                ? "For executives, trust officers and administrators, regulators, compliance experts, and technologists"
+                : "For executives, regulators, compliance experts, and technologists"}
             </span>
           </motion.p>
           {/* Chat left, upload right — equal size */}

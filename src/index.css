@@ -5,7 +5,10 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --color-ink: #0f1a2e;
+  --color-ink: var(--ink, #0f1a2e);
+  --color-ink-foreground: var(--ink-foreground, #f5f6f7);
+  --color-brass: var(--brass, #c8ccd2);
+  --font-display: var(--lv-font-display, var(--font-sans));
   --color-ink-2: #16233d;
   --color-sky: #8fb0ff;
   --color-navy: #1d3f8a;
@@ -240,4 +243,51 @@
 /* Home introduction: dot grid fades out toward the bottom of the block */
 .splash-grid {
   mask-image: linear-gradient(to bottom, black 0%, black 35%, transparent 100%);
+}
+
+/* ---- Lovable-built pages (trustcompanyai.org door). Palette scoped to .lv so the rest of the site is untouched. ---- */
+.lv {
+  --lv-font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter Variable", system-ui, sans-serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter Variable", system-ui, sans-serif;
+  --radius: 0.25rem;
+  --background: oklch(0.975 0.012 85);
+  --foreground: oklch(0.2 0.03 255);
+  --card: oklch(0.99 0.008 85);
+  --card-foreground: oklch(0.2 0.03 255);
+  --popover: oklch(0.99 0.008 85);
+  --popover-foreground: oklch(0.2 0.03 255);
+  --primary: oklch(0.24 0.05 255);
+  --primary-foreground: oklch(0.975 0.012 85);
+  --secondary: oklch(0.93 0.02 85);
+  --secondary-foreground: oklch(0.24 0.05 255);
+  --muted: oklch(0.93 0.015 85);
+  --muted-foreground: oklch(0.45 0.03 255);
+  --accent: oklch(0.48 0.018 245);
+  --accent-foreground: oklch(0.98 0.005 230);
+  --border: oklch(0.85 0.02 85);
+  --input: oklch(0.85 0.02 85);
+  --ring: oklch(0.48 0.018 245);
+  --ink: oklch(0.18 0.04 255);
+  --ink-foreground: oklch(0.95 0.015 85);
+  --brass: oklch(0.8 0.01 245);
+  font-family: var(--font-sans);
+}
+.lv * { border-color: var(--color-border); }
+.lv h1, .lv h2, .lv h3 { font-family: var(--lv-font-display); letter-spacing: -0.035em; font-weight: 600; }
+.lv em { font-style: normal; }
+.lv .eyebrow { font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 600; }
+.lv .fade-up { animation: lvFadeUp 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+@keyframes lvFadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+@keyframes lvSlowDrift { from { transform: scale(1.04); } to { transform: scale(1.12) translateX(-1.5%); } }
+.lv .hero-media { animation: lvSlowDrift 40s ease-in-out infinite alternate; }
+.lv .reveal { opacity: 0; transform: translateY(24px); transition: opacity 1.2s cubic-bezier(0.2, 0.7, 0.2, 1), transform 1.2s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.lv .reveal.is-visible { opacity: 1; transform: none; }
+.lv .fade-up:nth-child(2) { animation-delay: 0.15s; }
+.lv .fade-up:nth-child(3) { animation-delay: 0.3s; }
+.lv .fade-up:nth-child(4) { animation-delay: 0.45s; }
+.lv .fade-up:nth-child(5) { animation-delay: 0.6s; }
+.lv .fade-up:nth-child(6) { animation-delay: 0.75s; }
+@media (prefers-reduced-motion: reduce) {
+  .lv .hero-media, .lv .fade-up { animation: none; }
+  .lv .reveal { opacity: 1; transform: none; transition: none; }
 }
